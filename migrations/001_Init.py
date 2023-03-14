@@ -51,7 +51,7 @@ def migrate(migrator, database, fake=False, **kwargs):
         language = pw.CharField(constraints=[SQL("DEFAULT 'en'")], default='en', max_length=255)
         is_ban = pw.BooleanField(constraints=[SQL("DEFAULT False")], default=False)
         is_admin = pw.BooleanField(constraints=[SQL("DEFAULT False")], default=False)
-
+        select_collection_id = pw.BigIntegerField(default=None, null=True)
         date_last_action = pw.DateTimeField()
         created_at = pw.DateTimeField()
 
@@ -73,7 +73,6 @@ def migrate(migrator, database, fake=False, **kwargs):
     @migrator.create_model
     class Sentence(BaseModel):
         id = pw.BigIntegerField(primary_key=True)
-        name = pw.CharField(max_length=255)
         text_original = pw.CharField(max_length=255)
         text_translate = pw.CharField(max_length=255)
         collection_id = pw.ForeignKeyField(Collection, backref='sentences')

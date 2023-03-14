@@ -8,7 +8,6 @@ from .base import BaseModel
 
 class Sentence(BaseModel):
     id = BigIntegerField(primary_key=True)
-    name = CharField(default=None)
     text_original = CharField(default=None)
     text_translate = CharField(default=None)
     collection_id = ForeignKeyField(Collection, backref='sentences')

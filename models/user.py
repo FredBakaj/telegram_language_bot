@@ -16,6 +16,8 @@ class User(BaseModel):
 
     date_last_action = DateTimeField(default=lambda: datetime.utcnow())
     created_at = DateTimeField(default=lambda: datetime.utcnow())
+    select_collection_id = BigIntegerField(default=None, null=True)
+
 
     def __repr__(self) -> str:
         return f'<User {self.username}>'
