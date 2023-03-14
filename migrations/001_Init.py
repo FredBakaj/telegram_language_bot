@@ -49,17 +49,46 @@ def migrate(migrator, database, fake=False, **kwargs):
         name = pw.CharField(max_length=255)
         username = pw.CharField(max_length=255, null=True)
         language = pw.CharField(constraints=[SQL("DEFAULT 'en'")], default='en', max_length=255)
+        is_ban = pw.BooleanField(constraints=[SQL("DEFAULT False")], default=False)
         is_admin = pw.BooleanField(constraints=[SQL("DEFAULT False")], default=False)
+
+        date_last_action = pw.DateTimeField()
         created_at = pw.DateTimeField()
 
         class Meta:
             table_name = "users"
 
+    @migrator.create_model
+    class Collection(BaseModel):
+        id = pw.BigIntegerField(primary_key=True)
+        name = pw.CharField(max_length=255)
+        language_original = pw.CharField(max_length=255)
+        language_translate = pw.CharField(max_length=255)
+        user_id = pw.ForeignKeyField(User, backref='collections')
+        created_at = pw.DateTimeField()
+
+        class Meta:
+            table_name = 'collections'
+
+    @migrator.create_model
+    class Sentence(BaseModel):
+        id = pw.BigIntegerField(primary_key=True)
+        name = pw.CharField(max_length=255)
+        text_original = pw.CharField(max_length=255)
+        text_translate = pw.CharField(max_length=255)
+        collection_id = pw.ForeignKeyField(Collection, backref='sentences')
+        category_remember = pw.IntegerField()
+        date_update = pw.DateTimeField()
+
+        class Meta:
+            table_name = 'sentences'
 
 
 def rollback(migrator, database, fake=False, **kwargs):
     """Write your rollback migrations here."""
 
     migrator.remove_model('users')
+    migrator.remove_model('collections')
+    migrator.remove_model('sentences')
 
     migrator.remove_model('basemodel')

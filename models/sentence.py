@@ -11,6 +11,9 @@ class Sentence(BaseModel):
     name = CharField(default=None)
     text_original = CharField(default=None)
     text_translate = CharField(default=None)
-    id_collection = ForeignKeyField(Collection, backref='sentences')
+    collection_id = ForeignKeyField(Collection, backref='sentences')
     category_remember = IntegerField(default=None)
     date_update = DateTimeField(default=lambda: datetime.utcnow())
+
+    class Meta:
+        table_name = 'sentences'

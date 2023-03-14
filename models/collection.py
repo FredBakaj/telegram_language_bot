@@ -13,3 +13,6 @@ class Collection(BaseModel):
     language_translate = CharField(default=None)
     user_id = ForeignKeyField(User, backref='collections')
     created_at = DateTimeField(default=lambda: datetime.utcnow())
+
+    class Meta:
+        table_name = 'collections'
