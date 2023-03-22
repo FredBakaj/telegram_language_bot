@@ -9,3 +9,4 @@ def get_menu_inline_markup():
     # markup.add()
 
     return markup
+
