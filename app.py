@@ -27,7 +27,8 @@ async def on_shutdown(dispatcher: Dispatcher):
 if __name__ == '__main__':
     from bot.middlewares import setup_middleware
     from bot import filters, handlers
-
+    from bot import states
+    __all__ = ["dp"]
     setup_middleware(dp)
 
     executor.start_polling(dp, on_startup=on_startup)

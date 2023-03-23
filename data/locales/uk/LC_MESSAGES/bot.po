@@ -1,14 +1,14 @@
 # Ukrainian translations for bot.
-# Copyright (C) 2022 ORGANIZATION
+# Copyright (C) 2023 ORGANIZATION
 # This file is distributed under the same license as the bot project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: bot VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-02 14:54+0300\n"
-"PO-Revision-Date: 2022-03-14 15:46+0200\n"
+"POT-Creation-Date: 2023-03-23 21:05+0200\n"
+"PO-Revision-Date: 2023-03-22 21:52+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: uk\n"
 "Language-Team: uk <LL@li.org>\n"
@@ -21,85 +21,440 @@ msgstr ""
 
 #: bot/commands/admin.py:11
 msgid "export users to csv"
-msgstr "експортувати користувачів у файл csv"
+msgstr "експортувати користувачів в csv"
 
 #: bot/commands/admin.py:12
 msgid "count users who contacted the bot"
-msgstr "кількість користувачів, які зв’язалися з ботом"
+msgstr "підрахунок користувачів, які зверталися до бота"
 
 #: bot/commands/admin.py:13
 msgid "count active users (who didn't block the bot)"
-msgstr "кількість активних користувачів (хто не заблокував бота)"
+msgstr "порахувати активних користувачів (які не заблокували бота)"
 
 #: bot/commands/default.py:8
 msgid "start bot"
 msgstr "запустити бота"
 
 #: bot/commands/default.py:9
-msgid "how it works?"
-msgstr "як це працює?"
+msgid "open menu"
+msgstr "відкрити меню"
 
 #: bot/commands/default.py:10
-msgid "change language"
-msgstr "змінити мову"
+msgid "open menu collection"
+msgstr "відкрити колекцію меню"
 
 #: bot/commands/default.py:11
-msgid "open bot settings"
-msgstr "відкрити налаштування бота"
+msgid "open menu sentence"
+msgstr "речення відкритого меню"
 
-#: bot/handlers/users/admin_menu.py:25 bot/handlers/users/admin_menu.py:33
+#: bot/handlers/users/admin_menu.py:24 bot/handlers/users/admin_menu.py:32
 msgid "Total users: {count}"
-msgstr "Усього користувачів: {count}"
+msgstr "Всього користувачів: {count}"
 
-#: bot/handlers/users/admin_menu.py:49
+#: bot/handlers/users/admin_menu.py:48
 msgid "Active users: {count}"
-msgstr "Активних користувачів: {count}"
+msgstr "Активні користувачі: {count}"
 
-#: bot/handlers/users/helpers.py:10
-msgid "Choose an action from the menu 👇"
-msgstr "Виберіть дію у меню 👇"
+#: bot/handlers/users/collection.py:15
+msgid "Name collection"
+msgstr "Колекція імен"
 
-#: bot/handlers/users/settings.py:21
-msgid ""
-"Language changed successfully\n"
-"Press /help to find out how I can help you"
-msgstr ""
-"Мова успішно змінена\n"
-"Натисни /help щоб дізнатися чим я можу тобі допомогти"
+#: bot/handlers/users/collection.py:30
+msgid "Delete collection (name collection)"
+msgstr "Видалити колекцію (колекцію імен)"
 
-#: bot/handlers/users/settings.py:30
+#: bot/handlers/users/collection.py:38
+msgid "Select collection"
+msgstr "Вибрати колекцію"
+
+#: bot/handlers/users/menu.py:22
+msgid "Main menu"
+msgstr "Головне меню"
+
+#: bot/handlers/users/menu.py:29
+msgid "You are gnida"
+msgstr "Ви gnida"
+
+#: bot/handlers/users/menu.py:58
+msgid "Language changed successfully\n"
+msgstr "Мову успішно змінено\n"
+
+#: bot/handlers/users/menu.py:65
 msgid "Choose your language"
-msgstr "Оберіть свою мову"
+msgstr "Виберіть свою мову"
 
-#: bot/handlers/users/start.py:15
+#: bot/handlers/users/sentence.py:12
+msgid "Menu sentence"
+msgstr "Речення меню"
+
+#: bot/handlers/users/start.py:10
 msgid ""
 "Hi {full_name}!\n"
-"Choose your language"
+"\n"
+"Welcome to our bot, this bot was created to help people learn a language."
+" Namely,\n"
+"to create sentence cards and learn them, There are 3 commands to control "
+"the bot, which are easy to switch between.\n"
+"\n"
+"/menu displays a menu from which you can start generating and displaying "
+"flashcards\n"
+"/collection displays the menu of your collections, here you can view all "
+"the collections you have, create a new one, or switch between them\n"
+"/sentence is the menu where you can add a new card to the collection, or "
+"view all the cards you have created before\n"
 msgstr ""
-"Привіт, {full_name}!\n"
-"Оберіть свою мову"
 
-#: bot/keyboards/default/default.py:9
-msgid "Help 🆘"
-msgstr "Допомога 🆘"
+#: bot/keyboards/inline/collection/delete_collection.py:8
+msgid "Yes"
+msgstr "Так."
 
-#: bot/keyboards/default/default.py:9
-msgid "Settings 🛠"
-msgstr "Налаштування 🛠"
+#: bot/keyboards/inline/collection/delete_collection.py:9
+msgid "No"
+msgstr "Ні."
 
-#: bot/keyboards/default/default.py:12
-msgid "Export users 📁"
-msgstr "Експорт користувачів 📁"
+#: bot/keyboards/inline/collection/states/finish_create_collection.py:7
+msgid "Change name"
+msgstr "Змінити назву"
 
-#: bot/keyboards/default/default.py:13
-msgid "Count users 👥"
-msgstr "Кількість користувачів 👥"
+#: bot/keyboards/inline/collection/states/finish_create_collection.py:8
+msgid "Change original language"
+msgstr "Змінити мову оригіналу"
 
-#: bot/keyboards/default/default.py:14
-msgid "Count active users 👥"
-msgstr "Кількість активних користувачів 👥"
+#: bot/keyboards/inline/collection/states/finish_create_collection.py:9
+msgid "Change translate language"
+msgstr "Змінити мову перекладу"
+
+#: bot/keyboards/inline/collection/states/finish_create_collection.py:11
+#: bot/keyboards/inline/sentence/states/finish_create_sentence.py:10
+msgid "Create"
+msgstr "Створити"
+
+#: bot/keyboards/inline/collection/states/finish_create_collection.py:12
+#: bot/keyboards/inline/sentence/states/finish_create_sentence.py:11
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: bot/keyboards/inline/sentence/states/finish_create_sentence.py:7
+msgid "Change origin sentence"
+msgstr "Змінити речення оригіналу"
+
+#: bot/keyboards/inline/sentence/states/finish_create_sentence.py:8
+msgid "Change translate sentence"
+msgstr "Змінити речення перекладу"
 
 #: bot/middlewares/throttling.py:35
 msgid "Too many requests!"
 msgstr "Занадто багато запитів!"
+
+#: bot/states/collection/create_collection.py:24
+msgid "Input name collection"
+msgstr "Колекція вхідних імен"
+
+#: bot/states/collection/create_collection.py:25
+msgid "Input language original"
+msgstr "Вхідна мова оригінал"
+
+#: bot/states/collection/create_collection.py:26
+msgid "Input language translate"
+msgstr "Мова перекладу"
+
+#: bot/states/collection/create_collection.py:113
+msgid "Collection is create ✅"
+msgstr "Колекція створена ✅"
+
+#: bot/states/collection/create_collection.py:121
+msgid "Collection is not create ❌"
+msgstr "Колекція не створюється ❌"
+
+#: bot/states/sentence/create_sentence.py:21
+msgid "Input sentence"
+msgstr "Введіть речення"
+
+#: bot/states/sentence/create_sentence.py:44
+msgid "Input original sentence"
+msgstr "Введіть оригінальне речення"
+
+#: bot/states/sentence/create_sentence.py:51
+msgid "Input translate sentence"
+msgstr "Введіть речення перекладу"
+
+#: bot/states/sentence/create_sentence.py:60
+msgid "Sentence is add ✅"
+msgstr "Речення додано ✅"
+
+#: bot/states/sentence/create_sentence.py:68
+msgid "Cancel add sentence ❌"
+msgstr "Скасувати додавання речення ❌"
+
+#: env/Lib/site-packages/click/_termui_impl.py:496
+msgid "{editor}: Editing failed"
+msgstr "{редактор}: Редагування не вдалося"
+
+#: env/Lib/site-packages/click/_termui_impl.py:500
+msgid "{editor}: Editing failed: {e}"
+msgstr "{редактор}: Редагування не вдалося: {e}"
+
+#: env/Lib/site-packages/click/core.py:1097
+msgid "Aborted!"
+msgstr "Перервано!"
+
+#: env/Lib/site-packages/click/core.py:1282
+#: env/Lib/site-packages/click/decorators.py:495
+msgid "Show this message and exit."
+msgstr "Покажіть це повідомлення і вийдіть."
+
+#: env/Lib/site-packages/click/core.py:1313
+#: env/Lib/site-packages/click/core.py:1339
+msgid "(Deprecated) {text}"
+msgstr "(Застаріла) {text}"
+
+#: env/Lib/site-packages/click/core.py:1357
+msgid "Options"
+msgstr "Параметри"
+
+#: env/Lib/site-packages/click/core.py:1385
+msgid "Got unexpected extra argument ({args})"
+msgid_plural "Got unexpected extra arguments ({args})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: env/Lib/site-packages/click/core.py:1398
+msgid "DeprecationWarning: The command {name!r} is deprecated."
+msgstr ""
+
+#: env/Lib/site-packages/click/core.py:1605
+msgid "Commands"
+msgstr ""
+
+#: env/Lib/site-packages/click/core.py:1637
+msgid "Missing command."
+msgstr ""
+
+#: env/Lib/site-packages/click/core.py:1715
+msgid "No such command {name!r}."
+msgstr ""
+
+#: env/Lib/site-packages/click/core.py:2271
+msgid "Value must be an iterable."
+msgstr ""
+
+#: env/Lib/site-packages/click/core.py:2293
+msgid "Takes {nargs} values but 1 was given."
+msgid_plural "Takes {nargs} values but {len} were given."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: env/Lib/site-packages/click/core.py:2734
+msgid "env var: {var}"
+msgstr ""
+
+#: env/Lib/site-packages/click/core.py:2764
+msgid "(dynamic)"
+msgstr ""
+
+#: env/Lib/site-packages/click/core.py:2777
+msgid "default: {default}"
+msgstr ""
+
+#: env/Lib/site-packages/click/core.py:2790
+msgid "required"
+msgstr ""
+
+#: env/Lib/site-packages/click/decorators.py:400
+#, python-format
+msgid "%(prog)s, version %(version)s"
+msgstr ""
+
+#: env/Lib/site-packages/click/decorators.py:464
+msgid "Show the version and exit."
+msgstr ""
+
+#: env/Lib/site-packages/click/exceptions.py:43
+#: env/Lib/site-packages/click/exceptions.py:79
+msgid "Error: {message}"
+msgstr ""
+
+#: env/Lib/site-packages/click/exceptions.py:71
+msgid "Try '{command} {option}' for help."
+msgstr ""
+
+#: env/Lib/site-packages/click/exceptions.py:120
+msgid "Invalid value: {message}"
+msgstr ""
+
+#: env/Lib/site-packages/click/exceptions.py:122
+msgid "Invalid value for {param_hint}: {message}"
+msgstr ""
+
+#: env/Lib/site-packages/click/exceptions.py:178
+msgid "Missing argument"
+msgstr ""
+
+#: env/Lib/site-packages/click/exceptions.py:180
+msgid "Missing option"
+msgstr ""
+
+#: env/Lib/site-packages/click/exceptions.py:182
+msgid "Missing parameter"
+msgstr ""
+
+#: env/Lib/site-packages/click/exceptions.py:184
+msgid "Missing {param_type}"
+msgstr ""
+
+#: env/Lib/site-packages/click/exceptions.py:191
+msgid "Missing parameter: {param_name}"
+msgstr ""
+
+#: env/Lib/site-packages/click/exceptions.py:211
+msgid "No such option: {name}"
+msgstr ""
+
+#: env/Lib/site-packages/click/exceptions.py:225
+msgid "Did you mean {possibility}?"
+msgid_plural "(Possible options: {possibilities})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: env/Lib/site-packages/click/exceptions.py:261
+msgid "unknown error"
+msgstr ""
+
+#: env/Lib/site-packages/click/exceptions.py:268
+msgid "Could not open file {filename!r}: {message}"
+msgstr ""
+
+#: env/Lib/site-packages/click/parser.py:231
+msgid "Argument {name!r} takes {nargs} values."
+msgstr ""
+
+#: env/Lib/site-packages/click/parser.py:413
+msgid "Option {name!r} does not take a value."
+msgstr ""
+
+#: env/Lib/site-packages/click/parser.py:473
+msgid "Option {name!r} requires an argument."
+msgid_plural "Option {name!r} requires {nargs} arguments."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: env/Lib/site-packages/click/shell_completion.py:315
+msgid "Shell completion is not supported for Bash versions older than 4.4."
+msgstr ""
+
+#: env/Lib/site-packages/click/shell_completion.py:322
+msgid "Couldn't detect Bash version, shell completion is not supported."
+msgstr ""
+
+#: env/Lib/site-packages/click/termui.py:160
+msgid "Repeat for confirmation"
+msgstr ""
+
+#: env/Lib/site-packages/click/termui.py:176
+msgid "Error: The value you entered was invalid."
+msgstr ""
+
+#: env/Lib/site-packages/click/termui.py:178
+msgid "Error: {e.message}"
+msgstr ""
+
+#: env/Lib/site-packages/click/termui.py:189
+msgid "Error: The two entered values do not match."
+msgstr ""
+
+#: env/Lib/site-packages/click/termui.py:245
+msgid "Error: invalid input"
+msgstr ""
+
+#: env/Lib/site-packages/click/termui.py:776
+msgid "Press any key to continue..."
+msgstr ""
+
+#: env/Lib/site-packages/click/types.py:265
+msgid ""
+"Choose from:\n"
+"\t{choices}"
+msgstr ""
+
+#: env/Lib/site-packages/click/types.py:299
+msgid "{value!r} is not {choice}."
+msgid_plural "{value!r} is not one of {choices}."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: env/Lib/site-packages/click/types.py:389
+msgid "{value!r} does not match the format {format}."
+msgid_plural "{value!r} does not match the formats {formats}."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: env/Lib/site-packages/click/types.py:409
+msgid "{value!r} is not a valid {number_type}."
+msgstr ""
+
+#: env/Lib/site-packages/click/types.py:465
+msgid "{value} is not in the range {range}."
+msgstr ""
+
+#: env/Lib/site-packages/click/types.py:606
+msgid "{value!r} is not a valid boolean."
+msgstr ""
+
+#: env/Lib/site-packages/click/types.py:630
+msgid "{value!r} is not a valid UUID."
+msgstr ""
+
+#: env/Lib/site-packages/click/types.py:811
+msgid "file"
+msgstr ""
+
+#: env/Lib/site-packages/click/types.py:813
+msgid "directory"
+msgstr ""
+
+#: env/Lib/site-packages/click/types.py:815
+msgid "path"
+msgstr ""
+
+#: env/Lib/site-packages/click/types.py:861
+msgid "{name} {filename!r} does not exist."
+msgstr ""
+
+#: env/Lib/site-packages/click/types.py:870
+msgid "{name} {filename!r} is a file."
+msgstr ""
+
+#: env/Lib/site-packages/click/types.py:878
+msgid "{name} '{filename}' is a directory."
+msgstr ""
+
+#: env/Lib/site-packages/click/types.py:887
+msgid "{name} {filename!r} is not readable."
+msgstr ""
+
+#: env/Lib/site-packages/click/types.py:896
+msgid "{name} {filename!r} is not writable."
+msgstr ""
+
+#: env/Lib/site-packages/click/types.py:905
+msgid "{name} {filename!r} is not executable."
+msgstr ""
+
+#: env/Lib/site-packages/click/types.py:971
+msgid "{len_type} values are required, but {len_value} was given."
+msgid_plural "{len_type} values are required, but {len_value} were given."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#~ msgid ""
+#~ "Name collection\n"
+#~ "(99\\99)"
+#~ msgstr ""
 
