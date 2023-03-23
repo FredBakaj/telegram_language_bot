@@ -12,6 +12,6 @@ def get_menu_sentence_inline_markup(sentences: list[str], quantity_sentence: int
                InlineKeyboardButton('(99/99)', callback_data='sentence_page'),
                InlineKeyboardButton('>>', callback_data='scroll_sentence_right'))
 
-    markup.add(InlineKeyboardButton('Додати речення', callback_data='add_sentence'))
+    markup.add(InlineKeyboardButton('Add sentence', callback_data='add_sentence'))
 
     return markup

@@ -20,9 +20,15 @@ class FormCollection(StatesGroup):
     finish_create = State()
 
 
+class TextInterface:
+    input_name_collection = _("Input name collection")
+    input_language_original = _("Input language original")
+    input_language_translate = _("Input language translate")
+
+
 @dp.callback_query_handler(Regexp('create_collection'))
 async def _create_collection(callback_query: CallbackQuery, regexp: Regexp, user: User):
-    await callback_query.message.answer("Ведіть назву колекції")
+    await callback_query.message.answer(TextInterface.input_name_collection)
     await FormCollection.name_collection.set()
     pass
 
@@ -31,7 +37,7 @@ async def _create_collection(callback_query: CallbackQuery, regexp: Regexp, user
 async def _process_name_collection(message: Message, state: FSMContext):
     async with state.proxy() as data:
         data['name_collection'] = message.text
-    await message.answer("Введіть мову яку бажаєте вивчати")
+    await message.answer(TextInterface.input_language_original)
     await FormCollection.language_original.set()
 
 
@@ -39,7 +45,7 @@ async def _process_name_collection(message: Message, state: FSMContext):
 async def _process_language_original(message: Message, state: FSMContext):
     async with state.proxy() as data:
         data['language_original'] = message.text
-    await message.answer("Введіть мову яку розумієте")
+    await message.answer(TextInterface.input_language_translate)
     await FormCollection.language_translate.set()
 
 
@@ -81,21 +87,21 @@ async def _answer_finish_create(message: Message, data):
 
 @dp.callback_query_handler(Regexp('change_name_collection'), state=FormCollection.finish_create)
 async def _change_name_collection(callback_query: CallbackQuery, regexp: Regexp, user: User):
-    await callback_query.message.answer("Ведіть назву колекції")
+    await callback_query.message.answer(TextInterface.input_name_collection)
     await FormCollection.change_name_collection.set()
     pass
 
 
 @dp.callback_query_handler(Regexp('change_language_original'), state=FormCollection.finish_create)
 async def _change_language_original(callback_query: CallbackQuery, regexp: Regexp, user: User):
-    await callback_query.message.answer("Введіть мову яку бажаєте вивчати")
+    await callback_query.message.answer(TextInterface.input_language_original)
     await FormCollection.change_language_original.set()
     pass
 
 
 @dp.callback_query_handler(Regexp('change_language_translate'), state=FormCollection.finish_create)
 async def _change_language_translate(callback_query: CallbackQuery, regexp: Regexp, user: User):
-    await callback_query.message.answer("Введіть мову яку розумієте")
+    await callback_query.message.answer(TextInterface.input_language_translate)
     await FormCollection.change_language_translate.set()
     pass
 
@@ -104,7 +110,7 @@ async def _change_language_translate(callback_query: CallbackQuery, regexp: Rege
 async def _save_collection(callback_query: CallbackQuery, regexp: Regexp, user: User, state: FSMContext):
     await state.finish()
     # TODO add save to database
-    await callback_query.message.edit_text(text="колекція створена ✅")
+    await callback_query.message.edit_text(text=_("Collection is create ✅"))
     await menu_collection(callback_query.message, user)
     pass
 
@@ -112,6 +118,6 @@ async def _save_collection(callback_query: CallbackQuery, regexp: Regexp, user: 
 @dp.callback_query_handler(Regexp('disable_collection'), state=FormCollection.finish_create)
 async def _disable_collection(callback_query: CallbackQuery, regexp: Regexp, user: User, state: FSMContext):
     await state.finish()
-    await callback_query.message.edit_text(text="колекція не створена ❌")
+    await callback_query.message.edit_text(text=_("Collection is not create ❌"))
     await menu_collection(callback_query.message, user)
     pass

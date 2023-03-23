@@ -3,7 +3,7 @@ from aiogram.dispatcher.filters import Regexp
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.types import Message, CallbackQuery
 
-from loader import dp
+from loader import dp, _
 from models import User
 from ...handlers.users.sentence import menu_sentence
 from ...keyboards.inline.sentence.states.finish_create_sentence import get_finish_create_sentence_inline_markup
@@ -17,15 +17,15 @@ class FormSentence(StatesGroup):
 
 
 @dp.callback_query_handler(Regexp('add_sentence'))
-async def _create_collection(callback_query: CallbackQuery, regexp: Regexp, user: User):
-    await callback_query.message.answer("Введіть речення")
+async def _create_sentence(callback_query: CallbackQuery, regexp: Regexp, user: User):
+    await callback_query.message.answer(_("Input sentence"))
     await FormSentence.input_sentence.set()
     pass
 
 
 async def finish_create_answer(message, data):
     # text_answer = f"Речення \n {data['sentence_original']}\n\n{data['sentence_translate']}" TODO uncomment
-    text_answer = f"Речення \n {data['sentence_original']}\n\n test texttest texttest texttest texttest texttest text"
+    text_answer = f"{_('Sentence')} \n {data['sentence_original']}\n\n test texttest texttest texttest texttest texttest text"
     await message.answer(text_answer, reply_markup=get_finish_create_sentence_inline_markup())
     await FormSentence.finish_create.set()
 
@@ -41,14 +41,14 @@ async def _input_sentence(message: Message, state: FSMContext):
 @dp.callback_query_handler(Regexp('change_sentence_original'), state=FormSentence.finish_create)
 async def _change_sentence_original_callback(callback_query: CallbackQuery, regexp: Regexp, user: User,
                                              state: FSMContext):
-    await callback_query.message.answer("Введіть оригінальне речення")
+    await callback_query.message.answer(_("Input original sentence"))
     await FormSentence.change_sentence_original.set()
 
 
 @dp.callback_query_handler(Regexp('change_sentence_translate'), state=FormSentence.finish_create)
 async def _change_sentence_translate_callback(callback_query: CallbackQuery, regexp: Regexp, user: User,
                                               state: FSMContext):
-    await callback_query.message.answer("Введіть речення на вашій мові")
+    await callback_query.message.answer(_("Input translate sentence"))
     await FormSentence.change_sentence_translate.set()
 
 
@@ -57,7 +57,7 @@ async def _change_sentence_translate_callback(callback_query: CallbackQuery, reg
                                               state: FSMContext):
     await state.finish()
     # TODO add save to database
-    await callback_query.message.edit_text(text="речення добавлене ✅")
+    await callback_query.message.edit_text(text=_("Sentence is add ✅"))
     await menu_sentence(callback_query.message, user)
 
 
@@ -65,7 +65,7 @@ async def _change_sentence_translate_callback(callback_query: CallbackQuery, reg
 async def _change_sentence_translate_callback(callback_query: CallbackQuery, regexp: Regexp, user: User,
                                               state: FSMContext):
     await state.finish()
-    await callback_query.message.edit_text(text="відміна додавання речення ❌")
+    await callback_query.message.edit_text(text=_("Cancel add sentence ❌"))
     await menu_sentence(callback_query.message, user)
 
 
