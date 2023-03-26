@@ -17,18 +17,30 @@ def create_collection(name_collection: str, language_original: str, language_tra
     return new_collection
 
 
+def get_name_select_collection(user_id: int) -> str:
+    get_user_select_collection_id = User.select(User.select_collection_id).where(User.id == user_id)
+    collection_name = Collection.select(Collection.name).where(Collection.id == get_user_select_collection_id).get()
+    return collection_name.name
+
+
 def get_list_collection(user_id: int) -> list[Collection]:
     list_collection = Collection.select().where(Collection.user_id == user_id)
     return list(list_collection)
-    pass
+
 
 
 def delete_collection(collection_id: int):
     Collection.delete_by_id(collection_id)
-    pass
 
 
-def select_collection(user: User, collection_id: int):
+
+def set_select_collection(user: User, collection_id: int):
     user.select_collection_id = collection_id
     user.save()
-    pass
+
+
+def change_name_collection(collection_id: int, new_name: str):
+    collection = Collection.get_by_id(collection_id)
+    collection.name = new_name
+    collection.save()
+

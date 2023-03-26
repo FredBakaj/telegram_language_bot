@@ -9,6 +9,8 @@ from bot.keyboards.inline.collection.states.finish_create_collection import get_
 from loader import dp, _
 from models import User
 
+from services.collection import create_collection, set_select_collection
+
 
 class FormCollection(StatesGroup):
     name_collection = State()
@@ -108,9 +110,13 @@ async def _change_language_translate(callback_query: CallbackQuery, regexp: Rege
 
 @dp.callback_query_handler(Regexp('save_collection'), state=FormCollection.finish_create)
 async def _save_collection(callback_query: CallbackQuery, regexp: Regexp, user: User, state: FSMContext):
-    await state.finish()
-    # TODO add save to database
+    # TODO GLOBAL add checks for the specified languages and collection name
+    async with state.proxy() as data:
+        new_collection = create_collection(data['name_collection'], data['language_original'],
+                                           data['language_translate'], user.id)
+        set_select_collection(user, new_collection.id)
     await callback_query.message.edit_text(text=_("Collection is create ✅"))
+    await state.finish()
     await menu_collection(callback_query.message, user)
     pass
 
