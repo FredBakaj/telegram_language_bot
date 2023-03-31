@@ -10,6 +10,7 @@ from loader import dp, _
 from models import User
 
 from services.collection import create_collection, set_select_collection
+from utils.validation import check_name_collection, check_literal_language_collection
 
 
 class FormCollection(StatesGroup):
@@ -24,8 +25,17 @@ class FormCollection(StatesGroup):
 
 class TextInterface:
     input_name_collection = _("Input name collection")
-    input_language_original = _("Input language original")
-    input_language_translate = _("Input language translate")
+    input_language_original = _("Input language original \n"
+                                "the most popular \n"
+                                "en - English\n"
+                                "de - German\n"
+                                "pl - Polish")
+    input_language_translate = _("Input language translate\n"
+                                 "the most popular \n"
+                                 "uk - Ukrainian\n"
+                                 "ru - Russian\n"
+                                 "be - Belarusian")
+
 
 
 @dp.callback_query_handler(Regexp('create_collection'))
@@ -37,6 +47,8 @@ async def _create_collection(callback_query: CallbackQuery, regexp: Regexp, user
 
 @dp.message_handler(state=FormCollection.name_collection)
 async def _process_name_collection(message: Message, state: FSMContext):
+    # validation name collection
+    if not await check_name_collection(message): return
     async with state.proxy() as data:
         data['name_collection'] = message.text
     await message.answer(TextInterface.input_language_original)
@@ -45,6 +57,9 @@ async def _process_name_collection(message: Message, state: FSMContext):
 
 @dp.message_handler(state=FormCollection.language_original)
 async def _process_language_original(message: Message, state: FSMContext):
+    # validation literal language
+    if not await check_literal_language_collection(message): return
+
     async with state.proxy() as data:
         data['language_original'] = message.text
     await message.answer(TextInterface.input_language_translate)
@@ -53,6 +68,9 @@ async def _process_language_original(message: Message, state: FSMContext):
 
 @dp.message_handler(state=FormCollection.language_translate)
 async def _process_language_translate(message: Message, state: FSMContext):
+    # validation literal language
+    if not await check_literal_language_collection(message): return
+
     async with state.proxy() as data:
         data['language_translate'] = message.text
     text_answer = f"{data['name_collection']}\n {data['language_original']}\n {data['language_translate']}"
@@ -62,6 +80,8 @@ async def _process_language_translate(message: Message, state: FSMContext):
 
 @dp.message_handler(state=FormCollection.change_name_collection)
 async def _process_change_name_collection(message: Message, state: FSMContext):
+    # validation name collection
+    if not await check_name_collection(message): return
     async with state.proxy() as data:
         data['name_collection'] = message.text
         await _answer_finish_create(message, data)
@@ -69,6 +89,8 @@ async def _process_change_name_collection(message: Message, state: FSMContext):
 
 @dp.message_handler(state=FormCollection.change_language_original)
 async def _process_change_language_original(message: Message, state: FSMContext):
+    # validation literal language
+    if not await check_literal_language_collection(message): return
     async with state.proxy() as data:
         data['language_original'] = message.text
         await _answer_finish_create(message, data)
@@ -76,6 +98,8 @@ async def _process_change_language_original(message: Message, state: FSMContext)
 
 @dp.message_handler(state=FormCollection.change_language_translate)
 async def _process_change_language_translate(message: Message, state: FSMContext):
+    # validation literal language
+    if not await check_literal_language_collection(message): return
     async with state.proxy() as data:
         data['language_translate'] = message.text
         await _answer_finish_create(message, data)

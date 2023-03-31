@@ -28,10 +28,8 @@ def get_list_collection(user_id: int) -> list[Collection]:
     return list(list_collection)
 
 
-
 def delete_collection(collection_id: int):
     Collection.delete_by_id(collection_id)
-
 
 
 def set_select_collection(user: User, collection_id: int):
@@ -44,3 +42,8 @@ def change_name_collection(collection_id: int, new_name: str):
     collection.name = new_name
     collection.save()
 
+
+def get_languages_collection(collection_id: int) -> tuple[str, str]:
+    collection = Collection.get_by_id(collection_id)
+    languages = (collection.language_original, collection.language_translate)
+    return languages

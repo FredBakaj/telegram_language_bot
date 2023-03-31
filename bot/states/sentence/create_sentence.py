@@ -5,8 +5,13 @@ from aiogram.types import Message, CallbackQuery
 
 from loader import dp, _
 from models import User
+from services.collection import get_languages_collection
+from services.sentence import create_sentence
+from utils.validation import check_len_sentence
 from ...handlers.users.sentence import menu_sentence
 from ...keyboards.inline.sentence.states.finish_create_sentence import get_finish_create_sentence_inline_markup
+
+from utils.translate import translate_text, detect_text_language
 
 
 class FormSentence(StatesGroup):
@@ -25,16 +30,30 @@ async def _create_sentence(callback_query: CallbackQuery, regexp: Regexp, user: 
 
 async def finish_create_answer(message, data):
     # text_answer = f"Речення \n {data['sentence_original']}\n\n{data['sentence_translate']}" TODO uncomment
-    text_answer = f"{_('Sentence')} \n {data['sentence_original']}\n\n test texttest texttest texttest texttest texttest text"
+    text_answer = f"{_('Sentence')} \n {data['sentence_original']}\n\n {data['sentence_translate']}"
     await message.answer(text_answer, reply_markup=get_finish_create_sentence_inline_markup())
     await FormSentence.finish_create.set()
 
 
 @dp.message_handler(state=FormSentence.input_sentence)
-async def _input_sentence(message: Message, state: FSMContext):
+async def _input_sentence(message: Message, user: User, state: FSMContext):
+    # validation name collection
+    if not await check_len_sentence(message): return
+
     async with state.proxy() as data:
-        data['sentence_original'] = message.text
-        # data['sentence_translate'] = message.text TODO add translate sentence original
+        input_language = detect_text_language(message.text)
+        print(f"log {input_language}")
+        l_original, l_translate = get_languages_collection(user.select_collection_id)
+        if input_language == l_original:
+            data['sentence_original'] = message.text
+            data['sentence_translate'] = translate_text(message.text, l_translate)
+        elif input_language == l_translate:
+            data['sentence_original'] = translate_text(message.text, l_original)
+            data['sentence_translate'] = message.text
+        else:
+            data['sentence_original'] = message.text
+            data['sentence_translate'] = message.text
+
         await finish_create_answer(message, data)
 
 
@@ -53,12 +72,17 @@ async def _change_sentence_translate_callback(callback_query: CallbackQuery, reg
 
 
 @dp.callback_query_handler(Regexp('save_sentence'), state=FormSentence.finish_create)
-async def _change_sentence_translate_callback(callback_query: CallbackQuery, regexp: Regexp, user: User,
-                                              state: FSMContext):
-    await state.finish()
+async def _save_sentence_callback(callback_query: CallbackQuery, regexp: Regexp, user: User,
+                                  state: FSMContext):
     # TODO add save to database
+    async with state.proxy() as data:
+        text_original = data['sentence_original']
+        text_translate = data['sentence_translate']
+        collection_id = user.select_collection_id
+        create_sentence(text_original, text_translate, collection_id)
+    await state.finish()
     await callback_query.message.edit_text(text=_("Sentence is add ✅"))
-    await menu_sentence(callback_query.message, user)
+    await menu_sentence(callback_query.message, user, state)
 
 
 @dp.callback_query_handler(Regexp('disable_sentence'), state=FormSentence.finish_create)
@@ -66,11 +90,14 @@ async def _change_sentence_translate_callback(callback_query: CallbackQuery, reg
                                               state: FSMContext):
     await state.finish()
     await callback_query.message.edit_text(text=_("Cancel add sentence ❌"))
-    await menu_sentence(callback_query.message, user)
+    await menu_sentence(callback_query.message, user, state)
 
 
 @dp.message_handler(state=FormSentence.change_sentence_original)
 async def _change_sentence_original(message: Message, state: FSMContext):
+    # validation name collection
+    if not await check_len_sentence(message): return
+
     async with state.proxy() as data:
         data['sentence_original'] = message.text
         await finish_create_answer(message, data)
@@ -78,6 +105,9 @@ async def _change_sentence_original(message: Message, state: FSMContext):
 
 @dp.message_handler(state=FormSentence.change_sentence_translate)
 async def _change_sentence_original(message: Message, state: FSMContext):
+    # validation name collection
+    if not await check_len_sentence(message): return
+
     async with state.proxy() as data:
         data['sentence_translate'] = message.text
         await finish_create_answer(message, data)

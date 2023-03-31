@@ -2,7 +2,7 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
 def get_select_collection_inline_markup(collections: list[tuple],
-                                        quantity_item: int, page: int,
+                                        page: int,
                                         max_pages: int):
     markup = InlineKeyboardMarkup()
 

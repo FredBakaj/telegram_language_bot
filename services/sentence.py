@@ -14,6 +14,11 @@ def get_sentences_from_collection(collection_id: int, category: int = None) -> l
     return list(sentences)
 
 
+def get_sentences_for_id(sentence_id: int) -> Sentence:
+    sentence = Sentence.get_by_id(sentence_id)
+    return sentence
+
+
 def create_sentence(text_original: str, text_translate: str, collection_id: int) -> Sentence:
     sentence = Sentence.create(
         text_original=text_original,
@@ -25,7 +30,7 @@ def create_sentence(text_original: str, text_translate: str, collection_id: int)
     return sentence
 
 
-def delete_sentence(sentence_id: int):
+def delete_sentence_by_id(sentence_id: int):
     Sentence.delete_by_id(sentence_id)
 
 

@@ -3,6 +3,7 @@ from aiogram.dispatcher.filters import Regexp
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.types import Message, CallbackQuery
 
+from utils.validation import check_name_collection
 from ...handlers.users.collection import menu_collection
 
 from bot.keyboards.inline.collection.states.finish_create_collection import get_finish_create_collection_inline_markup
@@ -25,13 +26,10 @@ async def _input_new_name_answer(callback_query):
     pass
 
 
-@dp.callback_query_handler(lambda c: c.data == 'change_collection')
-async def _change_collection(callback_query: CallbackQuery, user: User):
-    await _input_new_name_answer(callback_query)
-
-
 @dp.message_handler(state=FormChangeCollection.change_name_collection)
 async def _process_name_collection(message: Message, user: User, state: FSMContext):
+    # validation name collection
+    if not await check_name_collection(message): return
     async with state.proxy() as data:
         data['name_collection'] = message.text
     text = _('Save new name collection?\n{name_collection}').format(name_collection=message.text)
@@ -39,7 +37,7 @@ async def _process_name_collection(message: Message, user: User, state: FSMConte
     await FormChangeCollection.finish_change.set()
 
 
-@dp.callback_query_handler(lambda c: c.data == 'change_shift_collection', state=FormChangeCollection.finish_change)
+@dp.callback_query_handler(lambda c: c.data == 'change_collection')
 async def _change_shift_collection(callback_query: CallbackQuery, user: User):
     await _input_new_name_answer(callback_query)
     pass

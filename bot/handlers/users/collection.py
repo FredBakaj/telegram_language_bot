@@ -45,14 +45,14 @@ async def _delete_collection_yes(callback_query: CallbackQuery, user: User):
     delete_collection(select_collection_id)
     list_collection = get_list_collection(user.id)
     set_select_collection(user, list_collection[0].id)
-    text = _("collection deleted 🗑")
+    text = _("Collection deleted 🗑")
     await callback_query.message.edit_text(text)
     await menu_collection(callback_query.message, user)
 
 
 @dp.callback_query_handler(lambda c: c.data == 'delete_collection_no')
 async def _delete_collection_no(callback_query: CallbackQuery, user: User):
-    text = _("collection not deleted ❎")
+    text = _("Collection not deleted ❎")
     await callback_query.message.edit_text(text)
     await menu_collection(callback_query.message, user)
 
@@ -63,8 +63,7 @@ async def _generate_select_collection_response(callback_query: CallbackQuery, us
     list_collection = get_list_collection(user.id)
     list_collection = [(col.name, col.id) for col in list_collection]
 
-    key_page = "page_select_collection"
-    key_quantity_pages = "quantity_pages"
+
     data = await state.get_data()
     page = data.get('page_select_collection', 1)
     quantity_pages = int(ceil(len(list_collection) / quantity_items))
@@ -83,8 +82,7 @@ async def _generate_select_collection_response(callback_query: CallbackQuery, us
     await callback_query.message.edit_text(text,
                                            reply_markup=get_select_collection_inline_markup(list_collection,
                                                                                             quantity_items,
-                                                                                            page,
-                                                                                            quantity_pages))
+                                                                                            page))
 
 
 @dp.callback_query_handler(Regexp('select_collection'))
