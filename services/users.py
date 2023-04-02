@@ -2,6 +2,7 @@ from peewee import fn
 
 from data.config import ADMINS
 from models import User
+from services.collection import create_collection
 from utils.misc.logging import logger
 
 
@@ -35,7 +36,8 @@ def edit_user_language(id: int, language: str):
 
 def create_user(id: int, name: str, username: str = None, language: str = None) -> User:
     new_user = User.create(id=id, name=name, username=username, language=language)
-
+    start_collection = create_collection("Start collection", "en", language, new_user.id)
+    new_user.select_collection_id = start_collection.id
     if id in ADMINS:
         new_user.is_admin = True
         new_user.save()

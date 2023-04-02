@@ -18,9 +18,9 @@ def create_collection(name_collection: str, language_original: str, language_tra
 
 
 def get_name_select_collection(user_id: int) -> str:
-    get_user_select_collection_id = User.select(User.select_collection_id).where(User.id == user_id)
-    collection_name = Collection.select(Collection.name).where(Collection.id == get_user_select_collection_id).get()
-    return collection_name.name
+    select_collection_id = User.get_by_id(user_id).select_collection_id
+    collection_name = Collection.get_by_id(select_collection_id).name
+    return collection_name
 
 
 def get_list_collection(user_id: int) -> list[Collection]:
@@ -47,3 +47,8 @@ def get_languages_collection(collection_id: int) -> tuple[str, str]:
     collection = Collection.get_by_id(collection_id)
     languages = (collection.language_original, collection.language_translate)
     return languages
+
+
+if __name__ == '__main__':
+    print(get_name_select_collection(1064935465))
+    # print(get_list_collection(1064935465))
