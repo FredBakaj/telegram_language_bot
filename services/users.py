@@ -40,8 +40,8 @@ def create_user(id: int, name: str, username: str = None, language: str = None) 
     new_user.select_collection_id = start_collection.id
     if id in ADMINS:
         new_user.is_admin = True
-        new_user.save()
 
+    new_user.save()
     logger.info(f'New user {new_user}')
 
     return new_user
