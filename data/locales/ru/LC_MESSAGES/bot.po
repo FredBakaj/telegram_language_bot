@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bot VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-23 21:05+0200\n"
+"POT-Creation-Date: 2023-04-01 19:14+0300\n"
 "PO-Revision-Date: 2023-03-22 21:06+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -21,196 +21,361 @@ msgstr ""
 
 #: bot/commands/admin.py:11
 msgid "export users to csv"
-msgstr ""
+msgstr "экспортировать пользователей в csv"
 
 #: bot/commands/admin.py:12
 msgid "count users who contacted the bot"
-msgstr ""
+msgstr "подсчитать пользователей, которые связались с ботом"
 
 #: bot/commands/admin.py:13
 msgid "count active users (who didn't block the bot)"
-msgstr ""
+msgstr "подсчитать активных пользователей (которые не заблокировали бота)"
 
 #: bot/commands/default.py:8
-msgid "start bot"
-msgstr ""
+#, fuzzy
+msgid "menu"
+msgstr "открыть меню"
 
 #: bot/commands/default.py:9
-msgid "open menu"
-msgstr ""
+#, fuzzy
+msgid "sentences"
+msgstr "Меню предложений"
 
 #: bot/commands/default.py:10
-msgid "open menu collection"
-msgstr ""
+#, fuzzy
+msgid "collections"
+msgstr "Коллекция имен"
 
 #: bot/commands/default.py:11
-msgid "open menu sentence"
+msgid "show tutorial"
 msgstr ""
 
 #: bot/handlers/users/admin_menu.py:24 bot/handlers/users/admin_menu.py:32
 msgid "Total users: {count}"
-msgstr ""
+msgstr "Всего пользователей: {count}"
 
 #: bot/handlers/users/admin_menu.py:48
 msgid "Active users: {count}"
-msgstr ""
+msgstr "Активные пользователи: {count}"
 
-#: bot/handlers/users/collection.py:15
-msgid "Name collection"
+#: bot/handlers/users/collection.py:19
+msgid ""
+"Name collection: \n"
+"{name}\n"
+" For open sentences /sentence"
 msgstr ""
+"Имя колекции: \n"
+"{name}\n"
+" Для открытых предложений /sentence"
 
-#: bot/handlers/users/collection.py:30
-msgid "Delete collection (name collection)"
-msgstr ""
+#: bot/handlers/users/collection.py:29
+#, fuzzy
+msgid "Delete collection {name_collection}"
+msgstr "Удалить коллекцию (коллекция имен)"
 
-#: bot/handlers/users/collection.py:38
+#: bot/handlers/users/collection.py:32
+#, fuzzy
+msgid "You can`t delete collection, because you have only one collection"
+msgstr "Удалить коллекцию (коллекция имен)"
+
+#: bot/handlers/users/collection.py:44
+#, fuzzy
+msgid "Collection deleted 🗑"
+msgstr "Коллекция создана ✅"
+
+#: bot/handlers/users/collection.py:51
+#, fuzzy
+msgid "Collection not deleted ❎"
+msgstr "Коллекция не создана ❌"
+
+#: bot/handlers/users/collection.py:76
 msgid "Select collection"
-msgstr ""
+msgstr "Выбрать коллекцию"
 
-#: bot/handlers/users/menu.py:22
+#: bot/handlers/users/collection.py:113
+msgid "is selected 👌"
+msgstr "выбран 👌"
+
+#: bot/handlers/users/menu.py:20
 msgid "Main menu"
-msgstr ""
+msgstr "Главное меню"
 
-#: bot/handlers/users/menu.py:29
-msgid "You are gnida"
-msgstr ""
+#: bot/handlers/users/menu.py:51
+msgid "End card"
+msgstr "Конец"
 
-#: bot/handlers/users/menu.py:58
+#: bot/handlers/users/menu.py:102
 msgid "Language changed successfully\n"
-msgstr ""
+msgstr "Язык изменен успешно\n"
 
-#: bot/handlers/users/menu.py:65
+#: bot/handlers/users/menu.py:109
 msgid "Choose your language"
-msgstr ""
+msgstr "Выберите язык"
 
-#: bot/handlers/users/sentence.py:12
+#: bot/handlers/users/sentence.py:34
 msgid "Menu sentence"
-msgstr ""
+msgstr "Меню предложений"
+
+#: bot/handlers/users/sentence.py:108
+#, fuzzy
+msgid "Sentence deleted 🗑"
+msgstr "Предложение добавлено ✅"
+
+#: bot/handlers/users/sentence.py:115
+#, fuzzy
+msgid "Sentence not deleted ❎"
+msgstr "Предложение добавлено ✅"
 
 #: bot/handlers/users/start.py:10
 msgid ""
 "Hi {full_name}!\n"
 "\n"
-"Welcome to our bot, this bot was created to help people learn a language."
-" Namely,\n"
-"to create sentence cards and learn them, There are 3 commands to control "
-"the bot, which are easy to switch between.\n"
-"\n"
-"/menu displays a menu from which you can start generating and displaying "
-"flashcards\n"
-"/collection displays the menu of your collections, here you can view all "
-"the collections you have, create a new one, or switch between them\n"
-"/sentence is the menu where you can add a new card to the collection, or "
-"view all the cards you have created before\n"
+"    Welcome to our bot, this bot was created to help people learn a "
+"language. Namely,\n"
+"    create sentence cards and learn them.\n"
+"    \n"
+"    It works as follows: first, you create a collection /collection, then"
+" add sentences /sentence to the collection that you are interested in and"
+" would like to learn. Next, go to /menu where you can start learning. "
+"This bot will provide you with the sentences you have added in sequence, "
+"you watch how it is written and try to translate it in your head, then "
+"click flip to compare whether you translated the sentence correctly or "
+"not.\n"
+"    \n"
+"     There are 3 commands to control the bot, which are easy to switch "
+"between.\n"
+"    \n"
+"    /menu displays the menu where you can start generating and displaying"
+" cards\n"
+"    /collection - the menu of your collections, here you can view all the"
+" collections you have, create a new one or switch between them\n"
+"    /sentence - a menu where you can add a new sentence to a collection, "
+"or view all the sentences you have created so far\n"
+"    "
 msgstr ""
+"Привет {full_name}!\n"
+"\n"
+"    Добро пожаловать в наш бот, этот бот был создан, чтобы помочь людям "
+"выучить язык. А именно, создавать карточки с предложениями и учить их.\n"
+"    \n"
+"    Это работает следующим образом: сначала вы создаете коллекцию "
+"/collection, затем добавляете в коллекцию предложения /sentence/, которые"
+" вам интересны и \n"
+" хотели бы выучить. Затем переходите в /menu, где вы можете начать "
+"обучение. Этот бот будет предоставлять вам добавленные вами предложения, "
+"вы смотрите, как они написаны, и пытаетесь перевести их в своей голове, "
+"затем нажимаете кнопку перевернуть, чтобы сравнить, правильно ли вы "
+"перевели предложение или нет.\n"
+"\n"
+"Для управления ботом есть 3 команды, которые легко переключаются между.\n"
+"\n"
+"/menu выводит меню, где вы можете начать генерировать и отображать карты\n"
+"/collection - меню ваших коллекций, здесь вы можете просмотреть "
+"всеколлекции, которые у вас есть, создать новую или переключаться между "
+"ними\n"
+" /sentence - меню, где вы можете добавить новое предложение в коллекцию,"
+"  или просмотреть все предложения, которые вы создали до сих пор\n"
+"    "
 
 #: bot/keyboards/inline/collection/delete_collection.py:8
+#: bot/keyboards/inline/sentence/delete_sentence.py:8
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: bot/keyboards/inline/collection/delete_collection.py:9
+#: bot/keyboards/inline/sentence/delete_sentence.py:9
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
-#: bot/keyboards/inline/collection/states/finish_create_collection.py:7
-msgid "Change name"
-msgstr ""
-
-#: bot/keyboards/inline/collection/states/finish_create_collection.py:8
-msgid "Change original language"
-msgstr ""
-
-#: bot/keyboards/inline/collection/states/finish_create_collection.py:9
-msgid "Change translate language"
-msgstr ""
-
+#: bot/keyboards/inline/collection/menu_collection.py:8
 #: bot/keyboards/inline/collection/states/finish_create_collection.py:11
 #: bot/keyboards/inline/sentence/states/finish_create_sentence.py:10
 msgid "Create"
-msgstr ""
+msgstr "Создать"
+
+#: bot/keyboards/inline/collection/menu_collection.py:9
+#: bot/keyboards/inline/collection/states/finish_change_collection.py:9
+msgid "Change"
+msgstr "Изменить"
+
+#: bot/keyboards/inline/collection/menu_collection.py:10
+#: bot/keyboards/inline/sentence/select_sentence.py:10
+msgid "Delete"
+msgstr "Удалить"
+
+#: bot/keyboards/inline/collection/menu_collection.py:11
+msgid "Select"
+msgstr "Выберите"
+
+#: bot/keyboards/inline/collection/states/finish_change_collection.py:8
+msgid "Save"
+msgstr "Сохранить"
+
+#: bot/keyboards/inline/collection/states/finish_change_collection.py:10
+#, fuzzy
+msgid "Cansel"
+msgstr "Отменить"
+
+#: bot/keyboards/inline/collection/states/finish_create_collection.py:7
+msgid "Change name"
+msgstr "Изменить название"
+
+#: bot/keyboards/inline/collection/states/finish_create_collection.py:8
+msgid "Change original language"
+msgstr "Изменить язык оригинала"
+
+#: bot/keyboards/inline/collection/states/finish_create_collection.py:9
+msgid "Change translate language"
+msgstr "Изменить язык перевода"
 
 #: bot/keyboards/inline/collection/states/finish_create_collection.py:12
 #: bot/keyboards/inline/sentence/states/finish_create_sentence.py:11
 msgid "Cancel"
-msgstr ""
+msgstr "Отменить"
+
+#: bot/keyboards/inline/menu/menu.py:8
+msgid "Begin"
+msgstr "Начать"
+
+#: bot/keyboards/inline/menu/menu.py:9
+msgid "Settings"
+msgstr "Настройки"
+
+#: bot/keyboards/inline/menu/sentence.py:8
+msgid "💪 Remember"
+msgstr "💪 Помню"
+
+#: bot/keyboards/inline/menu/sentence.py:9
+msgid "🔃 Return"
+msgstr "🔃 Перевернуть"
+
+#: bot/keyboards/inline/menu/sentence.py:10
+msgid "🐠 Forgot"
+msgstr "🐠 Забыл"
+
+#: bot/keyboards/inline/sentence/select_sentence.py:8
+msgid "Back"
+msgstr "Назад"
 
 #: bot/keyboards/inline/sentence/states/finish_create_sentence.py:7
 msgid "Change origin sentence"
-msgstr ""
+msgstr "Изменить исходное предложение"
 
 #: bot/keyboards/inline/sentence/states/finish_create_sentence.py:8
 msgid "Change translate sentence"
-msgstr ""
+msgstr "Изменить предложение перевода"
 
 #: bot/middlewares/throttling.py:35
 msgid "Too many requests!"
-msgstr ""
+msgstr "Слишком много запросов!"
 
-#: bot/states/collection/create_collection.py:24
+#: bot/states/collection/change_collection.py:23
+#, fuzzy
+msgid "Input new name collection"
+msgstr "Ввести коллекцию имен"
+
+#: bot/states/collection/change_collection.py:35
+msgid ""
+"Save new name collection?\n"
+"{name_collection}"
+msgstr ""
+"Сохранить новое имя колекции?\n"
+"{name_collection}"
+
+#: bot/states/collection/change_collection.py:50
+msgid "collection changed 👍"
+msgstr "Коллекция изменена 👍"
+
+#: bot/states/collection/change_collection.py:58
+#, fuzzy
+msgid "collection not changed ❌"
+msgstr "Коллекция не создана ❌"
+
+#: bot/states/collection/create_collection.py:27
 msgid "Input name collection"
-msgstr ""
+msgstr "Ввести коллекцию имен"
 
-#: bot/states/collection/create_collection.py:25
-msgid "Input language original"
+#: bot/states/collection/create_collection.py:28
+msgid ""
+"Input language original \n"
+"the most popular \n"
+"en - English\n"
+"de - German\n"
+"pl - Polish"
 msgstr ""
+"Введите оригинальный язык\n"
+"Самые популярные \n"
+"en - Английский\n"
+"de - Немецкий\n"
+"pl - Польский"
 
-#: bot/states/collection/create_collection.py:26
-msgid "Input language translate"
+#: bot/states/collection/create_collection.py:33
+msgid ""
+"Input language translate\n"
+"the most popular \n"
+"uk - Ukrainian\n"
+"ru - Russian\n"
+"be - Belarusian"
 msgstr ""
+"Введите язык перевода\n"
+"Самые популярные\n"
+"uk - украинский\n"
+"ru - русский\n"
+"be - белорусский"
 
-#: bot/states/collection/create_collection.py:113
+#: bot/states/collection/create_collection.py:141
 msgid "Collection is create ✅"
-msgstr ""
+msgstr "Коллекция создана ✅"
 
-#: bot/states/collection/create_collection.py:121
+#: bot/states/collection/create_collection.py:150
 msgid "Collection is not create ❌"
-msgstr ""
+msgstr "Коллекция не создана ❌"
 
-#: bot/states/sentence/create_sentence.py:21
+#: bot/states/sentence/create_sentence.py:26
 msgid "Input sentence"
-msgstr ""
+msgstr "Входное предложение"
 
-#: bot/states/sentence/create_sentence.py:44
+#: bot/states/sentence/create_sentence.py:63
 msgid "Input original sentence"
-msgstr ""
+msgstr "Ввод оригинального предложения"
 
-#: bot/states/sentence/create_sentence.py:51
+#: bot/states/sentence/create_sentence.py:70
 msgid "Input translate sentence"
-msgstr ""
+msgstr "Ввод перевода предложения"
 
-#: bot/states/sentence/create_sentence.py:60
+#: bot/states/sentence/create_sentence.py:84
 msgid "Sentence is add ✅"
-msgstr ""
+msgstr "Предложение добавлено ✅"
 
-#: bot/states/sentence/create_sentence.py:68
+#: bot/states/sentence/create_sentence.py:92
 msgid "Cancel add sentence ❌"
-msgstr ""
+msgstr "Отменить добавление предложения ❌"
 
 #: env/Lib/site-packages/click/_termui_impl.py:496
 msgid "{editor}: Editing failed"
-msgstr ""
+msgstr "{редактор}: Редактирование не удалось"
 
 #: env/Lib/site-packages/click/_termui_impl.py:500
 msgid "{editor}: Editing failed: {e}"
-msgstr ""
+msgstr "{editor}: Редактирование не удалось: {e}"
 
 #: env/Lib/site-packages/click/core.py:1097
 msgid "Aborted!"
-msgstr ""
+msgstr "Прервано!"
 
 #: env/Lib/site-packages/click/core.py:1282
 #: env/Lib/site-packages/click/decorators.py:495
 msgid "Show this message and exit."
-msgstr ""
+msgstr "Показать это сообщение и выйти\""
 
 #: env/Lib/site-packages/click/core.py:1313
 #: env/Lib/site-packages/click/core.py:1339
 msgid "(Deprecated) {text}"
-msgstr ""
+msgstr "(Deprecated) {text}"
 
 #: env/Lib/site-packages/click/core.py:1357
 msgid "Options"
-msgstr ""
+msgstr "Опции"
 
 #: env/Lib/site-packages/click/core.py:1385
 msgid "Got unexpected extra argument ({args})"
@@ -221,23 +386,23 @@ msgstr[2] ""
 
 #: env/Lib/site-packages/click/core.py:1398
 msgid "DeprecationWarning: The command {name!r} is deprecated."
-msgstr ""
+msgstr "DeprecationWarning: Команда {name!r} устарела"
 
 #: env/Lib/site-packages/click/core.py:1605
 msgid "Commands"
-msgstr ""
+msgstr "Команды"
 
 #: env/Lib/site-packages/click/core.py:1637
 msgid "Missing command."
-msgstr ""
+msgstr "Отсутствующая команда"
 
 #: env/Lib/site-packages/click/core.py:1715
 msgid "No such command {name!r}."
-msgstr ""
+msgstr "Нет такой команды {name!r}"
 
 #: env/Lib/site-packages/click/core.py:2271
 msgid "Value must be an iterable."
-msgstr ""
+msgstr "Значение должно быть итерабельным"
 
 #: env/Lib/site-packages/click/core.py:2293
 msgid "Takes {nargs} values but 1 was given."
@@ -453,8 +618,128 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
+#: env/Lib/site-packages/httplib2/__init__.py:408
+#, python-format
+msgid "Content purported to be compressed with %s but failed to decompress."
+msgstr ""
+
+#: env/Lib/site-packages/httplib2/__init__.py:572
+#, python-format
+msgid "Unsupported value for qop: %s."
+msgstr ""
+
+#: env/Lib/site-packages/httplib2/__init__.py:576
+#: env/Lib/site-packages/httplib2/__init__.py:654
+#, python-format
+msgid "Unsupported value for algorithm: %s.algorithm"
+msgstr ""
+
+#: env/Lib/site-packages/httplib2/__init__.py:649
+msgid "The challenge doesn't contain a server nonce, or this one is empty."
+msgstr ""
+
+#: env/Lib/site-packages/httplib2/__init__.py:659
+#, python-format
+msgid "Unsupported value for pw-algorithm: %s.pw-algorithm"
+msgstr ""
+
+#: env/Lib/site-packages/httplib2/__init__.py:1468
+msgid "Redirected but the response is missing a Location: header."
+msgstr ""
+
+#: utils/validation.py:17
+msgid "Name is very small (min length {min_len} characters)"
+msgstr ""
+
+#: utils/validation.py:21
+msgid "Name is very long (max length {max_len} characters)"
+msgstr ""
+
+#: utils/validation.py:30
+msgid "The number of letters in the language literal must be 2!"
+msgstr ""
+
+#: utils/validation.py:40
+msgid "Sentence is very small (min length {min_len} characters)"
+msgstr ""
+
+#: utils/validation.py:44
+msgid "Sentence is very long (max length {max_len} characters)"
+msgstr ""
+
 #~ msgid ""
 #~ "Name collection\n"
 #~ "(99\\99)"
 #~ msgstr ""
+
+#~ msgid "open menu collection"
+#~ msgstr "открыть меню коллекция"
+
+#~ msgid "open menu sentence"
+#~ msgstr "открыть предложение меню"
+
+#~ msgid "You are gnida"
+#~ msgstr "Вы - gnida"
+
+#~ msgid ""
+#~ "Hi {full_name}!\n"
+#~ "\n"
+#~ "Welcome to our bot, this bot was"
+#~ " created to help people learn a "
+#~ "language. Namely,\n"
+#~ "to create sentence cards and learn "
+#~ "them, There are 3 commands to "
+#~ "control the bot, which are easy to"
+#~ " switch between.\n"
+#~ "\n"
+#~ "/menu displays a menu from which "
+#~ "you can start generating and displaying"
+#~ " flashcards\n"
+#~ "/collection displays the menu of your"
+#~ " collections, here you can view all"
+#~ " the collections you have, create a"
+#~ " new one, or switch between them\n"
+#~ ""
+#~ "/sentence is the menu where you "
+#~ "can add a new card to the "
+#~ "collection, or view all the cards "
+#~ "you have created before\n"
+#~ msgstr ""
+#~ "Привет {полное имя}!\n"
+#~ "\n"
+#~ "Добро пожаловать в наш бот, этот "
+#~ "бот был создан, чтобы помочь людям "
+#~ "выучить язык. А именно,\n"
+#~ "создавать карточки с предложениями и "
+#~ "учить их, Есть 3 команды для "
+#~ "управления ботом, между которыми легко "
+#~ "переключаться.\n"
+#~ "\n"
+#~ "/menu выводит меню, из которого вы "
+#~ "можете начать генерировать и показывать "
+#~ "флешкарты\n"
+#~ "/collection отображает меню ваших коллекций,"
+#~ " здесь вы можете просмотреть все "
+#~ "коллекции, которые у вас есть, создать"
+#~ " новую или переключаться между ними\n"
+#~ "/sentence - это меню, где вы "
+#~ "можете добавить новую карточку в "
+#~ "коллекцию, или просмотреть все созданные "
+#~ "вами карточки.просмотреть все карточки, "
+#~ "которые вы создали ранее\n"
+
+#~ msgid "Input language original"
+#~ msgstr "Введите язык оригинала"
+
+#~ msgid "Input language translate"
+#~ msgstr "Ввести язык перевода"
+
+#~ msgid "учебное пособие"
+#~ msgstr ""
+
+#~ msgid "Start learn"
+#~ msgstr "Начать изучение"
+
+#~ msgid "Cards"
+#~ msgstr "Конец"
 

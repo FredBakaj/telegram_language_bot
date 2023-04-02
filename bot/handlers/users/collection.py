@@ -1,28 +1,24 @@
+from math import ceil
+
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.builtin import Regexp
 from aiogram.types import CallbackQuery, Message
-from aiogram.utils.callback_data import CallbackData
 
 from bot.keyboards.inline.collection.delete_collection import get_delete_collection_inline_markup
 from bot.keyboards.inline.collection.menu_collection import get_menu_collection_inline_markup
 from bot.keyboards.inline.collection.select_collection import get_select_collection_inline_markup
-from bot.keyboards.inline.menu.sentence import get_sentence_inline_markup
-from loader import dp, _, i18n
+from loader import dp, _
 from models import User
 from services.collection import get_name_select_collection, get_list_collection, set_select_collection, \
     delete_collection
-from math import ceil
 
 
-# @dp.message_handler(i18n_text='Settings 🛠')
-@dp.message_handler(commands=['collection'])
-async def menu_collection(message: Message, user: User):
-    text = _('Name collection {name}').format(
+@dp.message_handler(commands=['collection'], state="*")
+async def menu_collection(message: Message, user: User, state: FSMContext):
+    await state.finish()
+    text = _('Name collection: \n{name}\n For open sentences /sentence').format(
         name=get_name_select_collection(user.id))
     await message.answer(text, reply_markup=get_menu_collection_inline_markup())
-
-
-
 
 
 @dp.callback_query_handler(lambda c: c.data == 'delete_collection')
@@ -63,12 +59,11 @@ async def _generate_select_collection_response(callback_query: CallbackQuery, us
     list_collection = get_list_collection(user.id)
     list_collection = [(col.name, col.id) for col in list_collection]
 
-
     data = await state.get_data()
     page = data.get('page_select_collection', 1)
-    quantity_pages = int(ceil(len(list_collection) / quantity_items))
+    quantity_collection_pages = int(ceil(len(list_collection) / quantity_items))
 
-    await state.update_data(quantity_pages=quantity_pages)
+    await state.update_data(quantity_collection_pages=quantity_collection_pages)
 
     index_first_item = (page - 1) * quantity_items
     index_last_item = page * quantity_items
@@ -81,17 +76,17 @@ async def _generate_select_collection_response(callback_query: CallbackQuery, us
     text = _("Select collection")
     await callback_query.message.edit_text(text,
                                            reply_markup=get_select_collection_inline_markup(list_collection,
-                                                                                            quantity_items,
-                                                                                            page))
+                                                                                            page,
+                                                                                            quantity_collection_pages))
 
 
-@dp.callback_query_handler(Regexp('select_collection'))
-async def _select_collection(callback_query: CallbackQuery, regexp: Regexp, user: User, state: FSMContext):
+@dp.callback_query_handler(lambda c: c.data == 'select_collection')
+async def _select_collection(callback_query: CallbackQuery, user: User, state: FSMContext):
     await _generate_select_collection_response(callback_query, user, state)
 
 
-@dp.callback_query_handler(Regexp('scroll_collection_left'))
-async def _select_collection(callback_query: CallbackQuery, regexp: Regexp, user: User, state: FSMContext):
+@dp.callback_query_handler(lambda c: c.data == 'scroll_collection_left')
+async def _scroll_collection_left(callback_query: CallbackQuery, user: User, state: FSMContext):
     data = await state.get_data()
     page = data.get("page_select_collection", 1)
     if page > 1:
@@ -100,12 +95,12 @@ async def _select_collection(callback_query: CallbackQuery, regexp: Regexp, user
     await _generate_select_collection_response(callback_query, user, state)
 
 
-@dp.callback_query_handler(Regexp('scroll_collection_right'))
-async def _select_collection(callback_query: CallbackQuery, user: User, state: FSMContext):
+@dp.callback_query_handler(lambda c: c.data == 'scroll_collection_right')
+async def _scroll_collection_right(callback_query: CallbackQuery, user: User, state: FSMContext):
     data = await state.get_data()
     page = data.get("page_select_collection", 1)
-    quantity_pages = data.get("quantity_pages", 1)
-    if page < quantity_pages:
+    quantity_collection_pages = data.get("quantity_collection_pages", 1)
+    if page < quantity_collection_pages:
         await state.update_data(page_select_collection=1 + page)
 
     await _generate_select_collection_response(callback_query, user, state)

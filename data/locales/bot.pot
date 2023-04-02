@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bot VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-23 21:05+0200\n"
+"POT-Creation-Date: 2023-04-01 19:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,19 +30,19 @@ msgid "count active users (who didn't block the bot)"
 msgstr ""
 
 #: bot/commands/default.py:8
-msgid "start bot"
+msgid "menu"
 msgstr ""
 
 #: bot/commands/default.py:9
-msgid "open menu"
+msgid "sentences"
 msgstr ""
 
 #: bot/commands/default.py:10
-msgid "open menu collection"
+msgid "collections"
 msgstr ""
 
 #: bot/commands/default.py:11
-msgid "open menu sentence"
+msgid "show tutorial"
 msgstr ""
 
 #: bot/handlers/users/admin_menu.py:24 bot/handlers/users/admin_menu.py:32
@@ -53,61 +53,129 @@ msgstr ""
 msgid "Active users: {count}"
 msgstr ""
 
-#: bot/handlers/users/collection.py:15
-msgid "Name collection"
+#: bot/handlers/users/collection.py:19
+msgid ""
+"Name collection: \n"
+"{name}\n"
+" For open sentences /sentence"
 msgstr ""
 
-#: bot/handlers/users/collection.py:30
-msgid "Delete collection (name collection)"
+#: bot/handlers/users/collection.py:29
+msgid "Delete collection {name_collection}"
 msgstr ""
 
-#: bot/handlers/users/collection.py:38
+#: bot/handlers/users/collection.py:32
+msgid "You can`t delete collection, because you have only one collection"
+msgstr ""
+
+#: bot/handlers/users/collection.py:44
+msgid "Collection deleted 🗑"
+msgstr ""
+
+#: bot/handlers/users/collection.py:51
+msgid "Collection not deleted ❎"
+msgstr ""
+
+#: bot/handlers/users/collection.py:76
 msgid "Select collection"
 msgstr ""
 
-#: bot/handlers/users/menu.py:22
+#: bot/handlers/users/collection.py:113
+msgid "is selected 👌"
+msgstr ""
+
+#: bot/handlers/users/menu.py:20
 msgid "Main menu"
 msgstr ""
 
-#: bot/handlers/users/menu.py:29
-msgid "You are gnida"
+#: bot/handlers/users/menu.py:51
+msgid "End card"
 msgstr ""
 
-#: bot/handlers/users/menu.py:58
+#: bot/handlers/users/menu.py:102
 msgid "Language changed successfully\n"
 msgstr ""
 
-#: bot/handlers/users/menu.py:65
+#: bot/handlers/users/menu.py:109
 msgid "Choose your language"
 msgstr ""
 
-#: bot/handlers/users/sentence.py:12
+#: bot/handlers/users/sentence.py:34
 msgid "Menu sentence"
+msgstr ""
+
+#: bot/handlers/users/sentence.py:108
+msgid "Sentence deleted 🗑"
+msgstr ""
+
+#: bot/handlers/users/sentence.py:115
+msgid "Sentence not deleted ❎"
 msgstr ""
 
 #: bot/handlers/users/start.py:10
 msgid ""
 "Hi {full_name}!\n"
 "\n"
-"Welcome to our bot, this bot was created to help people learn a language."
-" Namely,\n"
-"to create sentence cards and learn them, There are 3 commands to control "
-"the bot, which are easy to switch between.\n"
-"\n"
-"/menu displays a menu from which you can start generating and displaying "
-"flashcards\n"
-"/collection displays the menu of your collections, here you can view all "
-"the collections you have, create a new one, or switch between them\n"
-"/sentence is the menu where you can add a new card to the collection, or "
-"view all the cards you have created before\n"
+"    Welcome to our bot, this bot was created to help people learn a "
+"language. Namely,\n"
+"    create sentence cards and learn them.\n"
+"    \n"
+"    It works as follows: first, you create a collection /collection, then"
+" add sentences /sentence to the collection that you are interested in and"
+" would like to learn. Next, go to /menu where you can start learning. "
+"This bot will provide you with the sentences you have added in sequence, "
+"you watch how it is written and try to translate it in your head, then "
+"click flip to compare whether you translated the sentence correctly or "
+"not.\n"
+"    \n"
+"     There are 3 commands to control the bot, which are easy to switch "
+"between.\n"
+"    \n"
+"    /menu displays the menu where you can start generating and displaying"
+" cards\n"
+"    /collection - the menu of your collections, here you can view all the"
+" collections you have, create a new one or switch between them\n"
+"    /sentence - a menu where you can add a new sentence to a collection, "
+"or view all the sentences you have created so far\n"
+"    "
 msgstr ""
 
 #: bot/keyboards/inline/collection/delete_collection.py:8
+#: bot/keyboards/inline/sentence/delete_sentence.py:8
 msgid "Yes"
 msgstr ""
 
 #: bot/keyboards/inline/collection/delete_collection.py:9
+#: bot/keyboards/inline/sentence/delete_sentence.py:9
 msgid "No"
+msgstr ""
+
+#: bot/keyboards/inline/collection/menu_collection.py:8
+#: bot/keyboards/inline/collection/states/finish_create_collection.py:11
+#: bot/keyboards/inline/sentence/states/finish_create_sentence.py:10
+msgid "Create"
+msgstr ""
+
+#: bot/keyboards/inline/collection/menu_collection.py:9
+#: bot/keyboards/inline/collection/states/finish_change_collection.py:9
+msgid "Change"
+msgstr ""
+
+#: bot/keyboards/inline/collection/menu_collection.py:10
+#: bot/keyboards/inline/sentence/select_sentence.py:10
+msgid "Delete"
+msgstr ""
+
+#: bot/keyboards/inline/collection/menu_collection.py:11
+msgid "Select"
+msgstr ""
+
+#: bot/keyboards/inline/collection/states/finish_change_collection.py:8
+msgid "Save"
+msgstr ""
+
+#: bot/keyboards/inline/collection/states/finish_change_collection.py:10
+msgid "Cansel"
 msgstr ""
 
 #: bot/keyboards/inline/collection/states/finish_create_collection.py:7
@@ -122,14 +190,33 @@ msgstr ""
 msgid "Change translate language"
 msgstr ""
 
-#: bot/keyboards/inline/collection/states/finish_create_collection.py:11
-#: bot/keyboards/inline/sentence/states/finish_create_sentence.py:10
-msgid "Create"
-msgstr ""
-
 #: bot/keyboards/inline/collection/states/finish_create_collection.py:12
 #: bot/keyboards/inline/sentence/states/finish_create_sentence.py:11
 msgid "Cancel"
+msgstr ""
+
+#: bot/keyboards/inline/menu/menu.py:8
+msgid "Begin"
+msgstr ""
+
+#: bot/keyboards/inline/menu/menu.py:9
+msgid "Settings"
+msgstr ""
+
+#: bot/keyboards/inline/menu/sentence.py:8
+msgid "💪 Remember"
+msgstr ""
+
+#: bot/keyboards/inline/menu/sentence.py:9
+msgid "🔃 Return"
+msgstr ""
+
+#: bot/keyboards/inline/menu/sentence.py:10
+msgid "🐠 Forgot"
+msgstr ""
+
+#: bot/keyboards/inline/sentence/select_sentence.py:8
+msgid "Back"
 msgstr ""
 
 #: bot/keyboards/inline/sentence/states/finish_create_sentence.py:7
@@ -144,43 +231,71 @@ msgstr ""
 msgid "Too many requests!"
 msgstr ""
 
-#: bot/states/collection/create_collection.py:24
+#: bot/states/collection/change_collection.py:23
+msgid "Input new name collection"
+msgstr ""
+
+#: bot/states/collection/change_collection.py:35
+msgid ""
+"Save new name collection?\n"
+"{name_collection}"
+msgstr ""
+
+#: bot/states/collection/change_collection.py:50
+msgid "collection changed 👍"
+msgstr ""
+
+#: bot/states/collection/change_collection.py:58
+msgid "collection not changed ❌"
+msgstr ""
+
+#: bot/states/collection/create_collection.py:27
 msgid "Input name collection"
 msgstr ""
 
-#: bot/states/collection/create_collection.py:25
-msgid "Input language original"
+#: bot/states/collection/create_collection.py:28
+msgid ""
+"Input language original \n"
+"the most popular \n"
+"en - English\n"
+"de - German\n"
+"pl - Polish"
 msgstr ""
 
-#: bot/states/collection/create_collection.py:26
-msgid "Input language translate"
+#: bot/states/collection/create_collection.py:33
+msgid ""
+"Input language translate\n"
+"the most popular \n"
+"uk - Ukrainian\n"
+"ru - Russian\n"
+"be - Belarusian"
 msgstr ""
 
-#: bot/states/collection/create_collection.py:113
+#: bot/states/collection/create_collection.py:141
 msgid "Collection is create ✅"
 msgstr ""
 
-#: bot/states/collection/create_collection.py:121
+#: bot/states/collection/create_collection.py:150
 msgid "Collection is not create ❌"
 msgstr ""
 
-#: bot/states/sentence/create_sentence.py:21
+#: bot/states/sentence/create_sentence.py:26
 msgid "Input sentence"
 msgstr ""
 
-#: bot/states/sentence/create_sentence.py:44
+#: bot/states/sentence/create_sentence.py:63
 msgid "Input original sentence"
 msgstr ""
 
-#: bot/states/sentence/create_sentence.py:51
+#: bot/states/sentence/create_sentence.py:70
 msgid "Input translate sentence"
 msgstr ""
 
-#: bot/states/sentence/create_sentence.py:60
+#: bot/states/sentence/create_sentence.py:84
 msgid "Sentence is add ✅"
 msgstr ""
 
-#: bot/states/sentence/create_sentence.py:68
+#: bot/states/sentence/create_sentence.py:92
 msgid "Cancel add sentence ❌"
 msgstr ""
 
@@ -443,4 +558,53 @@ msgid "{len_type} values are required, but {len_value} was given."
 msgid_plural "{len_type} values are required, but {len_value} were given."
 msgstr[0] ""
 msgstr[1] ""
+
+#: env/Lib/site-packages/httplib2/__init__.py:408
+#, python-format
+msgid "Content purported to be compressed with %s but failed to decompress."
+msgstr ""
+
+#: env/Lib/site-packages/httplib2/__init__.py:572
+#, python-format
+msgid "Unsupported value for qop: %s."
+msgstr ""
+
+#: env/Lib/site-packages/httplib2/__init__.py:576
+#: env/Lib/site-packages/httplib2/__init__.py:654
+#, python-format
+msgid "Unsupported value for algorithm: %s.algorithm"
+msgstr ""
+
+#: env/Lib/site-packages/httplib2/__init__.py:649
+msgid "The challenge doesn't contain a server nonce, or this one is empty."
+msgstr ""
+
+#: env/Lib/site-packages/httplib2/__init__.py:659
+#, python-format
+msgid "Unsupported value for pw-algorithm: %s.pw-algorithm"
+msgstr ""
+
+#: env/Lib/site-packages/httplib2/__init__.py:1468
+msgid "Redirected but the response is missing a Location: header."
+msgstr ""
+
+#: utils/validation.py:17
+msgid "Name is very small (min length {min_len} characters)"
+msgstr ""
+
+#: utils/validation.py:21
+msgid "Name is very long (max length {max_len} characters)"
+msgstr ""
+
+#: utils/validation.py:30
+msgid "The number of letters in the language literal must be 2!"
+msgstr ""
+
+#: utils/validation.py:40
+msgid "Sentence is very small (min length {min_len} characters)"
+msgstr ""
+
+#: utils/validation.py:44
+msgid "Sentence is very long (max length {max_len} characters)"
+msgstr ""
 

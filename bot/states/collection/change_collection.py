@@ -51,7 +51,6 @@ async def _save_shift_collection(callback_query: CallbackQuery, user: User, stat
     await callback_query.message.edit_text(text)
     await menu_collection(callback_query.message, user)
     await state.finish()
-    pass
 
 
 @dp.callback_query_handler(lambda c: c.data == 'cansel_shift_collection', state=FormChangeCollection.finish_change)

@@ -37,7 +37,6 @@ class TextInterface:
                                  "be - Belarusian")
 
 
-
 @dp.callback_query_handler(Regexp('create_collection'))
 async def _create_collection(callback_query: CallbackQuery, regexp: Regexp, user: User):
     await callback_query.message.answer(TextInterface.input_name_collection)
@@ -61,7 +60,7 @@ async def _process_language_original(message: Message, state: FSMContext):
     if not await check_literal_language_collection(message): return
 
     async with state.proxy() as data:
-        data['language_original'] = message.text
+        data['language_original'] = message.text.lower()
     await message.answer(TextInterface.input_language_translate)
     await FormCollection.language_translate.set()
 
@@ -72,7 +71,7 @@ async def _process_language_translate(message: Message, state: FSMContext):
     if not await check_literal_language_collection(message): return
 
     async with state.proxy() as data:
-        data['language_translate'] = message.text
+        data['language_translate'] = message.text.lower()
     text_answer = f"{data['name_collection']}\n {data['language_original']}\n {data['language_translate']}"
     await message.answer(text_answer, reply_markup=get_finish_create_collection_inline_markup())
     await FormCollection.finish_create.set()
@@ -92,7 +91,7 @@ async def _process_change_language_original(message: Message, state: FSMContext)
     # validation literal language
     if not await check_literal_language_collection(message): return
     async with state.proxy() as data:
-        data['language_original'] = message.text
+        data['language_original'] = message.text.lower()
         await _answer_finish_create(message, data)
 
 
@@ -101,7 +100,7 @@ async def _process_change_language_translate(message: Message, state: FSMContext
     # validation literal language
     if not await check_literal_language_collection(message): return
     async with state.proxy() as data:
-        data['language_translate'] = message.text
+        data['language_translate'] = message.text.lower()
         await _answer_finish_create(message, data)
 
 
