@@ -50,3 +50,10 @@ pybabel_compile:
 
 pybabel_update:
 	pybabel update -i ./data/locales/bot.pot -d ./data/locales -D bot
+curl $REPLIT_DB_URL -d 'key = value'
+curl $REPLIT_DB_URL -d 'key = value'
+curl $REPLIT_DB_URL -d 'key = value'
+curl $REPLIT_DB_URL/key
+curl $REPLIT_DB_URL -d 'key = value'
+curl $REPLIT_DB_URL -d 'key = value'
+curl $REPLIT_DB_URL -d 'key = value'
