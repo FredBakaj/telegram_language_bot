@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bot VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-01 19:14+0300\n"
+"POT-Creation-Date: 2023-04-03 19:56+0300\n"
 "PO-Revision-Date: 2023-03-22 21:52+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: uk\n"
@@ -32,19 +32,16 @@ msgid "count active users (who didn't block the bot)"
 msgstr "порахувати активних користувачів (які не заблокували бота)"
 
 #: bot/commands/default.py:8
-#, fuzzy
 msgid "menu"
-msgstr "відкрити меню"
+msgstr "Меню"
 
 #: bot/commands/default.py:9
-#, fuzzy
 msgid "sentences"
-msgstr "Речення меню"
+msgstr "Речення"
 
 #: bot/commands/default.py:10
-#, fuzzy
 msgid "collections"
-msgstr "Колекція імен"
+msgstr "Колекції"
 
 #: bot/commands/default.py:11
 msgid "show tutorial"
@@ -58,41 +55,41 @@ msgstr "Всього користувачів: {count}"
 msgid "Active users: {count}"
 msgstr "Активні користувачі: {count}"
 
-#: bot/handlers/users/collection.py:19
+#: bot/handlers/users/collection.py:21
 msgid ""
 "Name collection: \n"
 "{name}\n"
+"{origin}\n"
+"{translate}\n"
 " For open sentences /sentence"
 msgstr ""
 "Імя колекції: \n"
 "{name}\n"
+"{origin}\n"
+"{translate}\n"
 " Відкрити речення /sentence"
 
-#: bot/handlers/users/collection.py:29
-#, fuzzy
+#: bot/handlers/users/collection.py:31
 msgid "Delete collection {name_collection}"
-msgstr "Видалити колекцію (колекцію імен)"
+msgstr "Видалити колекцію (name_collection)"
 
-#: bot/handlers/users/collection.py:32
-#, fuzzy
+#: bot/handlers/users/collection.py:34
 msgid "You can`t delete collection, because you have only one collection"
-msgstr "Видалити колекцію (колекцію імен)"
+msgstr "Ви не можете видалити колекцію, тому що у вас є тільки одна колекція"
 
-#: bot/handlers/users/collection.py:44
-#, fuzzy
+#: bot/handlers/users/collection.py:46
 msgid "Collection deleted 🗑"
 msgstr "Колекція створена ✅"
 
-#: bot/handlers/users/collection.py:51
-#, fuzzy
+#: bot/handlers/users/collection.py:53
 msgid "Collection not deleted ❎"
 msgstr "Колекція не створюється ❌"
 
-#: bot/handlers/users/collection.py:76
+#: bot/handlers/users/collection.py:78
 msgid "Select collection"
 msgstr "Вибрати колекцію"
 
-#: bot/handlers/users/collection.py:113
+#: bot/handlers/users/collection.py:115
 msgid "is selected 👌"
 msgstr "Вибрано 👌"
 
@@ -100,29 +97,31 @@ msgstr "Вибрано 👌"
 msgid "Main menu"
 msgstr "Головне меню"
 
-#: bot/handlers/users/menu.py:51
+#: bot/handlers/users/menu.py:36
+msgid "❗️Your collection is empty, you need add sentences in collection"
+msgstr "❗️ Ваша колекція  порожня, потрібно додати речення до колекції"
+
+#: bot/handlers/users/menu.py:56
 msgid "End card"
 msgstr "Кінець"
 
-#: bot/handlers/users/menu.py:102
+#: bot/handlers/users/menu.py:107
 msgid "Language changed successfully\n"
 msgstr "Мову успішно змінено\n"
 
-#: bot/handlers/users/menu.py:109
+#: bot/handlers/users/menu.py:114
 msgid "Choose your language"
 msgstr "Виберіть свою мову"
 
 #: bot/handlers/users/sentence.py:34
 msgid "Menu sentence"
-msgstr "Речення меню"
+msgstr "Меню речень"
 
 #: bot/handlers/users/sentence.py:108
-#, fuzzy
 msgid "Sentence deleted 🗑"
-msgstr "Речення додано ✅"
+msgstr "Речення видалено 🗑"
 
 #: bot/handlers/users/sentence.py:115
-#, fuzzy
 msgid "Sentence not deleted ❎"
 msgstr "Речення додано ✅"
 
@@ -212,7 +211,6 @@ msgid "Save"
 msgstr "Зберегти"
 
 #: bot/keyboards/inline/collection/states/finish_change_collection.py:10
-#, fuzzy
 msgid "Cansel"
 msgstr "Скасувати"
 
@@ -222,11 +220,11 @@ msgstr "Змінити назву"
 
 #: bot/keyboards/inline/collection/states/finish_create_collection.py:8
 msgid "Change original language"
-msgstr "Змінити мову оригіналу"
+msgstr "Змінити оригінал"
 
 #: bot/keyboards/inline/collection/states/finish_create_collection.py:9
 msgid "Change translate language"
-msgstr "Змінити мову перекладу"
+msgstr "Змінити переклад"
 
 #: bot/keyboards/inline/collection/states/finish_create_collection.py:12
 #: bot/keyboards/inline/sentence/states/finish_create_sentence.py:11
@@ -253,26 +251,29 @@ msgstr "🔃 Перевернути"
 msgid "🐠 Forgot"
 msgstr "🐠 Забув"
 
+#: bot/keyboards/inline/sentence/menu_sentence.py:19
+msgid "Add sentence"
+msgstr "Додати речення"
+
 #: bot/keyboards/inline/sentence/select_sentence.py:8
 msgid "Back"
 msgstr "Назад"
 
 #: bot/keyboards/inline/sentence/states/finish_create_sentence.py:7
-msgid "Change origin sentence"
-msgstr "Змінити речення оригіналу"
+msgid "Change origin"
+msgstr "Змінити оригінал"
 
 #: bot/keyboards/inline/sentence/states/finish_create_sentence.py:8
-msgid "Change translate sentence"
-msgstr "Змінити речення перекладу"
+msgid "Change translate"
+msgstr "Змінити переклад"
 
 #: bot/middlewares/throttling.py:35
 msgid "Too many requests!"
 msgstr "Занадто багато запитів!"
 
 #: bot/states/collection/change_collection.py:23
-#, fuzzy
 msgid "Input new name collection"
-msgstr "Колекція вхідних імен"
+msgstr "Ведіть нове імя колекції"
 
 #: bot/states/collection/change_collection.py:35
 msgid ""
@@ -287,13 +288,12 @@ msgid "collection changed 👍"
 msgstr "Колекція змінена"
 
 #: bot/states/collection/change_collection.py:58
-#, fuzzy
 msgid "collection not changed ❌"
-msgstr "Колекція не створюється ❌"
+msgstr "Колекція не створена ❌"
 
 #: bot/states/collection/create_collection.py:27
 msgid "Input name collection"
-msgstr "Колекція вхідних імен"
+msgstr "Введіть імя колекції"
 
 #: bot/states/collection/create_collection.py:28
 msgid ""
@@ -323,41 +323,53 @@ msgstr ""
 "ru - Russian\n"
 "be - Belarusian"
 
-#: bot/states/collection/create_collection.py:141
+#: bot/states/collection/create_collection.py:45
+msgid ""
+"❗️The limit of the number of collections has been reached, maximum "
+"{max_quantity_collection}"
+msgstr "❗️ Ліміт кількості колекцій досягнуто, максимум {max_quantity_collection}"
+
+#: bot/states/collection/create_collection.py:148
 msgid "Collection is create ✅"
 msgstr "Колекція створена ✅"
 
-#: bot/states/collection/create_collection.py:150
+#: bot/states/collection/create_collection.py:157
 msgid "Collection is not create ❌"
 msgstr "Колекція не створюється ❌"
 
-#: bot/states/sentence/create_sentence.py:26
+#: bot/states/sentence/create_sentence.py:29
+msgid ""
+"❗️The limit of the number of sentences has been reached, maximum "
+"{max_quantity_sentences}"
+msgstr "❗️ Ліміт кількості речень досягнуто, максимум {max_quantity_sentences}"
+
+#: bot/states/sentence/create_sentence.py:33
 msgid "Input sentence"
 msgstr "Введіть речення"
 
-#: bot/states/sentence/create_sentence.py:63
+#: bot/states/sentence/create_sentence.py:70
 msgid "Input original sentence"
 msgstr "Введіть оригінальне речення"
 
-#: bot/states/sentence/create_sentence.py:70
+#: bot/states/sentence/create_sentence.py:77
 msgid "Input translate sentence"
 msgstr "Введіть речення перекладу"
 
-#: bot/states/sentence/create_sentence.py:84
+#: bot/states/sentence/create_sentence.py:91
 msgid "Sentence is add ✅"
 msgstr "Речення додано ✅"
 
-#: bot/states/sentence/create_sentence.py:92
+#: bot/states/sentence/create_sentence.py:99
 msgid "Cancel add sentence ❌"
 msgstr "Скасувати додавання речення ❌"
 
 #: env/Lib/site-packages/click/_termui_impl.py:496
 msgid "{editor}: Editing failed"
-msgstr "{редактор}: Редагування не вдалося"
+msgstr "{editor}: Редагування не вдалося"
 
 #: env/Lib/site-packages/click/_termui_impl.py:500
 msgid "{editor}: Editing failed: {e}"
-msgstr "{редактор}: Редагування не вдалося: {e}"
+msgstr "{editor}: Редагування не вдалося: {e}"
 
 #: env/Lib/site-packages/click/core.py:1097
 msgid "Aborted!"

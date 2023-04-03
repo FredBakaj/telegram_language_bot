@@ -9,7 +9,7 @@ from bot.keyboards.inline.collection.states.finish_create_collection import get_
 from loader import dp, _
 from models import User
 
-from services.collection import create_collection, set_select_collection
+from services.collection import create_collection, set_select_collection, get_count_collection
 from utils.validation import check_name_collection, check_literal_language_collection
 
 
@@ -24,23 +24,30 @@ class FormCollection(StatesGroup):
 
 
 class TextInterface:
-    input_name_collection = _("Input name collection")
-    input_language_original = _("Input language original \n"
-                                "the most popular \n"
-                                "en - English\n"
-                                "de - German\n"
-                                "pl - Polish")
-    input_language_translate = _("Input language translate\n"
-                                 "the most popular \n"
-                                 "uk - Ukrainian\n"
-                                 "ru - Russian\n"
-                                 "be - Belarusian")
+    input_name_collection = lambda: _("Input name collection")
+    input_language_original = lambda: _("Input language original \n"
+                                        "the most popular \n"
+                                        "en - English\n"
+                                        "de - German\n"
+                                        "pl - Polish")
+    input_language_translate = lambda: _("Input language translate\n"
+                                         "the most popular \n"
+                                         "uk - Ukrainian\n"
+                                         "ru - Russian\n"
+                                         "be - Belarusian")
 
 
 @dp.callback_query_handler(Regexp('create_collection'))
-async def _create_collection(callback_query: CallbackQuery, regexp: Regexp, user: User):
-    await callback_query.message.answer(TextInterface.input_name_collection)
-    await FormCollection.name_collection.set()
+async def _create_collection(callback_query: CallbackQuery, regexp: Regexp, user: User, state: FSMContext):
+    max_quantity_collection = 30
+    if get_count_collection(user.id) >= max_quantity_collection:
+        await callback_query.message.answer(
+            _("❗️The limit of the number of collections has been reached, maximum {max_quantity_collection}").format(
+                max_quantity_collection=max_quantity_collection))
+        await menu_collection(callback_query.message, user, state)
+    else:
+        await callback_query.message.answer(TextInterface.input_name_collection())
+        await FormCollection.name_collection.set()
     pass
 
 
@@ -50,7 +57,7 @@ async def _process_name_collection(message: Message, state: FSMContext):
     if not await check_name_collection(message): return
     async with state.proxy() as data:
         data['name_collection'] = message.text
-    await message.answer(TextInterface.input_language_original)
+    await message.answer(TextInterface.input_language_original())
     await FormCollection.language_original.set()
 
 
@@ -61,7 +68,7 @@ async def _process_language_original(message: Message, state: FSMContext):
 
     async with state.proxy() as data:
         data['language_original'] = message.text.lower()
-    await message.answer(TextInterface.input_language_translate)
+    await message.answer(TextInterface.input_language_translate())
     await FormCollection.language_translate.set()
 
 
@@ -112,21 +119,21 @@ async def _answer_finish_create(message: Message, data):
 
 @dp.callback_query_handler(Regexp('change_name_collection'), state=FormCollection.finish_create)
 async def _change_name_collection(callback_query: CallbackQuery, regexp: Regexp, user: User):
-    await callback_query.message.answer(TextInterface.input_name_collection)
+    await callback_query.message.answer(TextInterface.input_name_collection())
     await FormCollection.change_name_collection.set()
     pass
 
 
 @dp.callback_query_handler(Regexp('change_language_original'), state=FormCollection.finish_create)
 async def _change_language_original(callback_query: CallbackQuery, regexp: Regexp, user: User):
-    await callback_query.message.answer(TextInterface.input_language_original)
+    await callback_query.message.answer(TextInterface.input_language_original())
     await FormCollection.change_language_original.set()
     pass
 
 
 @dp.callback_query_handler(Regexp('change_language_translate'), state=FormCollection.finish_create)
 async def _change_language_translate(callback_query: CallbackQuery, regexp: Regexp, user: User):
-    await callback_query.message.answer(TextInterface.input_language_translate)
+    await callback_query.message.answer(TextInterface.input_language_translate())
     await FormCollection.change_language_translate.set()
     pass
 
@@ -140,7 +147,7 @@ async def _save_collection(callback_query: CallbackQuery, regexp: Regexp, user: 
         set_select_collection(user, new_collection.id)
     await callback_query.message.edit_text(text=_("Collection is create ✅"))
     await state.finish()
-    await menu_collection(callback_query.message, user)
+    await menu_collection(callback_query.message, user, state)
     pass
 
 
@@ -148,5 +155,5 @@ async def _save_collection(callback_query: CallbackQuery, regexp: Regexp, user: 
 async def _disable_collection(callback_query: CallbackQuery, regexp: Regexp, user: User, state: FSMContext):
     await state.finish()
     await callback_query.message.edit_text(text=_("Collection is not create ❌"))
-    await menu_collection(callback_query.message, user)
+    await menu_collection(callback_query.message, user, state)
     pass

@@ -43,3 +43,8 @@ def update_category_remember_sentence(sentence_id: int, category: int):
     sentence.category_remember = category
     sentence.date_update = datetime.datetime.now()
     sentence.save()
+
+
+def get_count_sentences(collection_id: int) -> int:
+    count = Sentence.select().where(Sentence.collection_id == collection_id).count()
+    return count

@@ -1,4 +1,5 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from loader import _
 
 
 def get_menu_sentence_inline_markup(sentences: list[tuple], page: int, max_pages: int,
@@ -15,6 +16,6 @@ def get_menu_sentence_inline_markup(sentences: list[tuple], page: int, max_pages
                InlineKeyboardButton(f'({page}/{max_pages})', callback_data='sentence_page'),
                InlineKeyboardButton('>>', callback_data='scroll_sentence_right'))
 
-    markup.add(InlineKeyboardButton('Add sentence', callback_data='add_sentence'))
+    markup.add(InlineKeyboardButton(_('Add sentence'), callback_data='add_sentence'))
 
     return markup

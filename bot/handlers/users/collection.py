@@ -9,22 +9,24 @@ from bot.keyboards.inline.collection.menu_collection import get_menu_collection_
 from bot.keyboards.inline.collection.select_collection import get_select_collection_inline_markup
 from loader import dp, _
 from models import User
-from services.collection import get_name_select_collection, get_list_collection, set_select_collection, \
+from services.collection import get_info_select_collection, get_list_collection, set_select_collection, \
     delete_collection
 
 
 @dp.message_handler(commands=['collection'], state="*")
 async def menu_collection(message: Message, user: User, state: FSMContext):
     await state.finish()
-    text = _('Name collection: \n{name}\n For open sentences /sentence').format(
-        name=get_name_select_collection(user.id))
+    collection_name, collection_language_origin, collection_language_translate = get_info_select_collection(
+        user.select_collection_id)
+    text = _('Name collection: \n{name}\n{origin}\n{translate}\n For open sentences /sentence').format(
+        name=collection_name, origin=collection_language_origin, translate=collection_language_translate)
     await message.answer(text, reply_markup=get_menu_collection_inline_markup())
 
 
 @dp.callback_query_handler(lambda c: c.data == 'delete_collection')
 async def _delete_collection(callback_query: CallbackQuery, user: User):
     list_collection = get_list_collection(user.id)
-    name_collection = get_name_select_collection(user.id)
+    name_collection, c_o, c_t = get_info_select_collection(user.select_collection_id)
     if len(list_collection) > 1:
         text = _("Delete collection {name_collection}").format(name_collection=name_collection)
         await callback_query.message.edit_text(text, reply_markup=get_delete_collection_inline_markup())
@@ -112,4 +114,4 @@ async def _select_collection_item(callback_query: CallbackQuery, user: User, sta
     set_select_collection(user, collection_item_id)
     await callback_query.message.edit_text(_("is selected 👌"))
 
-    await menu_collection(callback_query.message, user)
+    await menu_collection(callback_query.message, user, state)

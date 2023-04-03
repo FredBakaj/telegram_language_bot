@@ -32,11 +32,16 @@ async def _get_sentence_text(sentence: dict):
 @dp.callback_query_handler(Regexp('start_learn'))
 async def _start_learn(callback_query: CallbackQuery, user: User, state: FSMContext):
     sentences = get_sentences_from_collection(user.select_collection_id)
-    card_pool = await generate_card_pool(sentences, False)
-    await state.update_data(card_pool=card_pool)
-    text = await _get_sentence_text(card_pool[0])
-    text += f"\n\n\n--({len(card_pool)})--\n"
-    await callback_query.message.edit_text(text, reply_markup=get_sentence_inline_markup())
+    if len(sentences) == 0:
+        text = _("❗️Your collection is empty, you need add sentences in collection")
+        await callback_query.message.edit_text(text)
+        await _menu(callback_query.message, user, state)
+    else:
+        card_pool = await generate_card_pool(sentences, False)
+        await state.update_data(card_pool=card_pool)
+        text = await _get_sentence_text(card_pool[0])
+        text += f"\n\n\n--({len(card_pool)})--\n"
+        await callback_query.message.edit_text(text, reply_markup=get_sentence_inline_markup())
 
 
 async def _response_learn_sentence(card_pool: list[dict], callback_query: CallbackQuery, user: User, state: FSMContext):

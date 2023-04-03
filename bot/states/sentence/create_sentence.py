@@ -6,7 +6,7 @@ from aiogram.types import Message, CallbackQuery
 from loader import dp, _
 from models import User
 from services.collection import get_languages_collection
-from services.sentence import create_sentence
+from services.sentence import create_sentence, get_count_sentences
 from utils.validation import check_len_sentence
 from ...handlers.users.sentence import menu_sentence
 from ...keyboards.inline.sentence.states.finish_create_sentence import get_finish_create_sentence_inline_markup
@@ -22,15 +22,22 @@ class FormSentence(StatesGroup):
 
 
 @dp.callback_query_handler(Regexp('add_sentence'))
-async def _create_sentence(callback_query: CallbackQuery, regexp: Regexp, user: User):
-    await callback_query.message.answer(_("Input sentence"))
-    await FormSentence.input_sentence.set()
+async def _create_sentence(callback_query: CallbackQuery, regexp: Regexp, user: User, state: FSMContext):
+    max_quantity_sentences = 30
+    if get_count_sentences(user.select_collection_id) >= max_quantity_sentences:
+        await callback_query.message.answer(
+            _("❗️The limit of the number of sentences has been reached, maximum {max_quantity_sentences}").format(
+                max_quantity_sentences=max_quantity_sentences))
+        await menu_sentence(callback_query.message, user, state)
+    else:
+        await callback_query.message.answer(_("Input sentence"))
+        await FormSentence.input_sentence.set()
     pass
 
 
 async def finish_create_answer(message, data):
     # text_answer = f"Речення \n {data['sentence_original']}\n\n{data['sentence_translate']}" TODO uncomment
-    text_answer = f"{_('Sentence')} \n {data['sentence_original']}\n\n {data['sentence_translate']}"
+    text_answer = f"⚪️ {data['sentence_original']}\n 🟠 {data['sentence_translate']}"
     await message.answer(text_answer, reply_markup=get_finish_create_sentence_inline_markup())
     await FormSentence.finish_create.set()
 
