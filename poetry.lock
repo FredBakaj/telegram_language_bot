@@ -126,6 +126,24 @@ optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 
 [[package]]
+name = "flask"
+version = "2.2.3"
+description = "A simple framework for building complex web applications."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+click = ">=8.0"
+itsdangerous = ">=2.0"
+Jinja2 = ">=3.0"
+Werkzeug = ">=2.2.2"
+
+[package.extras]
+async = ["asgiref (>=3.2)"]
+dotenv = ["python-dotenv"]
+
+[[package]]
 name = "frozenlist"
 version = "1.3.3"
 description = "A list-like structure which implements collections.abc.MutableSequence"
@@ -243,6 +261,28 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "itsdangerous"
+version = "2.1.2"
+description = "Safely pass data to untrusted environments and back."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
+name = "jinja2"
+version = "3.1.2"
+description = "A very fast and expressive template engine."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+MarkupSafe = ">=2.0"
+
+[package.extras]
+i18n = ["Babel (>=2.7)"]
+
+[[package]]
 name = "langdetect"
 version = "1.0.9"
 description = "Language detection library ported from Google's language-detection."
@@ -275,6 +315,14 @@ description = "This package provides magic filter based on dynamic attribute get
 category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
+
+[[package]]
+name = "markupsafe"
+version = "2.1.2"
+description = "Safely add untrusted strings to HTML/XML markup."
+category = "main"
+optional = false
+python-versions = ">=3.7"
 
 [[package]]
 name = "multidict"
@@ -348,6 +396,20 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "werkzeug"
+version = "2.2.3"
+description = "The comprehensive WSGI web application library."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+MarkupSafe = ">=2.1.1"
+
+[package.extras]
+watchdog = ["watchdog"]
+
+[[package]]
 name = "win32-setctime"
 version = "1.1.0"
 description = "A small Python utility to set file creation time on Windows"
@@ -373,7 +435,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "c56508f1558f1d5f676ac097adddafcc7800a26faf7f72fc0f1975438b805f57"
+content-hash = "da9b67a3cca13842d91a556f339ab02ce9ffdfffb995a1aa7a3c50e65fd7e57d"
 
 [metadata.files]
 aiogram = []
@@ -387,6 +449,7 @@ chardet = []
 charset-normalizer = []
 click = []
 colorama = []
+flask = []
 frozenlist = []
 googletrans = []
 h11 = []
@@ -399,9 +462,12 @@ hyperframe = []
 idna = []
 iso-639 = []
 iso639 = []
+itsdangerous = []
+jinja2 = []
 langdetect = []
 loguru = []
 magic-filter = []
+markupsafe = []
 multidict = []
 peewee = []
 peewee-migrate = []
@@ -410,5 +476,6 @@ pytz = []
 rfc3986 = []
 six = []
 sniffio = []
+werkzeug = []
 win32-setctime = []
 yarl = []
