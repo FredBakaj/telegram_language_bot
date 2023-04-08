@@ -8,18 +8,11 @@ from models import User
 @dp.message_handler(CommandStart())
 async def _start(message: Message, user: User):
     text = _('Hi {full_name}!\n'
-    """
-    Welcome to our bot, this bot was created to help people learn a language. Namely,
-    create sentence cards and learn them.
-    
-    It works as follows: first, you create a collection /collection, then add sentences /sentence to the collection that you are interested in and would like to learn. Next, go to /menu where you can start learning. This bot will provide you with the sentences you have added in sequence, you watch how it is written and try to translate it in your head, then click flip to compare whether you translated the sentence correctly or not.
-    
-     There are 3 commands to control the bot, which are easy to switch between.
-    
-    /menu displays the menu where you can start generating and displaying cards
-    /collection - the menu of your collections, here you can view all the collections you have, create a new one or switch between them
-    /sentence - a menu where you can add a new sentence to a collection, or view all the sentences you have created so far
-    """
+             """
+             Our bot is designed to help people learn words by creating sentence cards and learning them. First, you need to create a collection and add sentences that interest you and that you want to learn. After that, you go to the menu where you can start learning sentences. The bot will sequentially provide you with the sentences you have added, and if you know the translation, you choose "remember", if you have forgotten, you choose "forgot". The cards are generated in such a way that if you remember the translation, the next time you see the word, it will be displayed starting with the translation, since it is more difficult to translate from your native language to another. To see the translation, you can click on the "flip" button.
+             
+             There are 3 commands to control the bot: /menu - displays the menu where you can start generating and displaying cards; /collection - the menu of your collections where you can view all your collections, create a new one, or switch between them; /sentence - the menu where you can add a new sentence to a collection or view all the sentences that have already been created.
+             """
              ).format(full_name=user.name)
 
     await message.answer(text)
