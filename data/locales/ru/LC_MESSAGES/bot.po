@@ -126,7 +126,7 @@ msgstr "Предложение удалено 🗑"
 
 #: bot/handlers/users/sentence.py:115
 msgid "Sentence not deleted ❎"
-msgstr "Предложение добавлено ✅"
+msgstr "Отмена удаления предложения ❎"
 
 #: bot/handlers/users/start.py:10
 msgid ""
@@ -232,7 +232,7 @@ msgstr "🐠 Забыл"
 
 #: bot/keyboards/inline/sentence/menu_sentence.py:19
 msgid "Add sentence"
-msgstr "Меню предложений"
+msgstr "Добавить предложение"
 
 #: bot/keyboards/inline/sentence/select_sentence.py:8
 msgid "Back"
@@ -328,7 +328,7 @@ msgstr ""
 
 #: bot/states/sentence/create_sentence.py:33
 msgid "Input sentence"
-msgstr "Входное предложение"
+msgstr "Введите предложение"
 
 #: bot/states/sentence/create_sentence.py:70
 msgid "Input original sentence"
